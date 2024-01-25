@@ -1,7 +1,11 @@
+import Button from "./components/Button.vue"
+import Article from "./components/Article.vue"
+
 <template>
-  Hllo there!
+Hello
 </template>
 
 <script>
 export default {}
-</script>
+</script> 
+

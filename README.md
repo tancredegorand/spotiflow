@@ -27,3 +27,5 @@ npm run dev
 ```sh
 npm run build
 ```
+
+resources : https://mitium.antoine-libert.com/courses/vuejs/intro.html
