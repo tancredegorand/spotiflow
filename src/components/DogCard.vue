@@ -1,22 +1,25 @@
 <template>
-
-    <div class="dog-card">
-      <img class="picture" src="https://my-best-kennel.com/pictures/45.png"/>
-      <div>
-        <h2 class="firstname">Pluto</h2>
-        <p class="breed">Saint-Hubert</p>
-      </div>  
+  <div class="dog-card">
+    <img class="pictureUrl" :src="pictureUrl" />
+    <div>
+      <h2 class="firstname">{{ firstname }}</h2>
+      <p class="breed">{{ breed }}</p>
     </div>
-    
-  </template>
-  
-  <script>
-      export default {
-        name: 'DogCard'
-      }
-  </script>
-  
-  <style scoped>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'DogCard',
+  props: {
+    firstname: { type: String, required: true },
+    breed: { type: String, default: "Saint-Hubert" },
+    pictureUrl: { type: String, default: "https://my-best-kennel.com/pictures/default.png" }
+  }
+}
+
+</script>
+  <style scoped lang="scss">
       .dog-card {
         display: flex;
       }
