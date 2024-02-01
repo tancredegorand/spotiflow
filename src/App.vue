@@ -3,13 +3,14 @@
 <template>
   <div class="dogs-gallery">
     <DogCard firstname="Pluto" breed="Saint-Hubert" picture_url="https://my-best-kennel.com/pictures/45.png"/>
-    <DogCard firstname="Rex" breed="Labrador" picture_url="https://my-best-kennel.com/pictures/46.png"/>
+    <DogCard :firstname = "TrendingCreatorsData.user_list[0].user.nickname" breed="Labrador" picture_url="https://my-best-kennel.com/pictures/46.png"/>
   </div>
 </template>
 
 <script>
 import DogCard from "./components/DogCard.vue"
-//import getDogsData from '@/services/api/dogsRepository.js'
+
+import {getTrendingCreators} from './services/api/getTrendingCreators.js'
 
 export default {
   name: "App",
@@ -20,19 +21,18 @@ export default {
   
   data() {
     return {
-      dogsData: []
+      TrendingCreatorsData: []
     }
   },
 
 
   created: function() {
-    this.retrieveDogsData()
+    this.retrieveTrendingCreators()
   },
 
   methods: {
-    async retrieveDogsData() {
-      const myData = await getDogsData()
-      this.dogsData = myData; 
+    async retrieveTrendingCreators() {
+      //this.TrendingCreatorsData = await getTrendingCreators("US"); 
     }
   }
 
