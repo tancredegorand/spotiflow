@@ -1,48 +1,41 @@
 
 
 <template>
-    <DogCard firstname="Pluto" breed="Saint-Hubert" picture_url="https://my-best-kennel.com/pictures/45.png"/>
-    <DogCard firstname="Pluto" breed="Saint-Hubert" picture_url="https://my-best-kennel.com/pictures/45.png"/>
-    <DogCard firstname="Pluto" breed="Saint-Hubert" picture_url="https://my-best-kennel.com/pictures/45.png"/>
-
+  <LegoGallery/>
+  <div v-if="state">
+    {{ state }}
+  </div>
+  <div else>
+    pas de state value encore.
+  </div>
 </template>
 
 <script>
-//import Files
-import TrendingCreatorsData  from "./services/api/trending-creator.json"
+import { ref } from "vue";
+import  {getTrendingCreators} from "@/services/api/getTrendingCreators.js"
 
 //import Components
-import DogCard from "./components/DogCard.vue"
-
-//import functions
-import {getTrendingCreatorsFromFile} from "./services/api/getTrendingCreators"
+import LegoGallery from "./components/LegoGallery.vue"
 
 
 export default {
   name: "App",
-  components:{
-    DogCard,
-  },
+  components:{LegoGallery},
 
-  data() {
-    return {
-      TrendingCreatorsData: []
-    }, {
-        TrendingCreators: TrendingCreatorsData  
-    }
-  },
+  setup() {
+    const state = ref({});
 
-  created: function() {
-    this.retrieveTrendingCreators()
-  },
+    getTrendingCreators()
+      .then(data => {
+        state.value = data
+      })
+      .catch(error => {}); 
 
-  methods: {
-    async retrieveTrendingCreators() {
-
-    }
+    return { state }
   }
+}
 
-};
 
 
 </script>
+
