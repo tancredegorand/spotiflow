@@ -16,6 +16,7 @@ export default {
         num_parts : String,
         year : String,
         set_img_url : String,
+        
     },
 }
 </script>

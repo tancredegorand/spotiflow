@@ -23,6 +23,7 @@ function getTrendingCreatorsFromJson() {
 
 export async function getTrendingCreators() {
     //requette API
+        //
     //si ne fonctionne pas alors : 
     try {
         let data = await getTrendingCreatorsFromJson();
