@@ -1,16 +1,16 @@
 
 
 <template>
-  <CreatorsList/>
+  <SearchList/>
 </template>
 
 <script>
-import CreatorsList from "./components/CreatorsList.vue"
+import SearchList from "./components/SearchList.vue"
 
 
 export default {
   name: "App",
-  components:{CreatorsList},
+  components:{SearchList},
 }
 
 
