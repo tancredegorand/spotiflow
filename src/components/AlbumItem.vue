@@ -23,7 +23,6 @@ export default {
         img_url: String, 
         date: Number, 
 
-
     },
 }
 </script>

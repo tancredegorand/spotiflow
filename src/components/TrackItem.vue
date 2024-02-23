@@ -32,7 +32,7 @@ export default {
         margin: 10px;
         img {
             margin-right: 10px;
-            width : 60px;
+            width : 60px
         }
         .trackInfos{
 

@@ -1,15 +1,14 @@
 <template>
     <div class="searchHeader">
-        <input type="text" v-model="searchValue" placeholder="Artist" @keypress.enter="retrieveSetData"/>
+        <input type="text" v-model="searchValue" placeholder="Artist, Album..." @keyup.enter="retrieveSetData"/>
         <select v-model="albumSortType" id="album-sort" @change="sortAlbums">
-            <option value="relevance">Relevance</option>
+          <option value="relevance">Relevance</option>
           <option value="AZName">A - Z</option>
-          <option value="ZAName">Z - A</option>
           <option value="date">Release date</option>
         </select>
     </div>
 
-    <div v-if="Object.keys(state).length !== 0" class="searchList">
+    <div v-if="Object.keys(state).length !== 0 && albumItemClicked === false" class="searchList">
         <AlbumItem
             v-for="album in sortedAlbums"
             :key="album.data.id"
@@ -17,6 +16,19 @@
             :artist="album.data.artists.items[0].profile.name"
             :img_url="album.data.coverArt.sources[0].url"
             :date="album.data.date.year"
+            @click="handleAlbumItemClick(album)"
+        />
+    </div>
+
+    <div v-if="Object.keys(albumData).length !== 0 && albumItemClicked === true">
+        <AlbumDisplay
+            :name="albumData.albums[0].name"
+            :img_url="albumData.albums[0].images[1].url"
+            :artist="albumData.albums[0].artists[0].name"  
+            :realse_date="albumData.albums[0].release_date"
+            :total_tracks="albumData.albums[0].total_tracks"
+            :popularity="albumData.albums[0].popularity"
+            :tracks="albumData.albums[0].tracks"
         />
     </div>
 
@@ -27,7 +39,9 @@
 
 <script>
 import AlbumItem from "./AlbumItem.vue";
+import AlbumDisplay from "./AlbumDisplay.vue";
 import { getSearch } from "@/services/api/getSearch.js"
+import { getAlbum } from "@/services/api/getAlbum.js"
 
 export default {
     name: 'SearchList',
@@ -36,7 +50,10 @@ export default {
             state: {},
             searchValue: "",
             albumSortType: "relevance",
-            originalOrder: [] 
+            originalOrder: [],
+            albumItemClicked: false,
+            albumID: "", 
+            albumData: {}
         }; 
     },
     created() {
@@ -47,32 +64,36 @@ export default {
             this.originalOrder = [...this.state.albums.items]; 
             this.sortAlbums(); 
         },
+        async retrieveAlbumData() {
+            this.albumData = await getAlbum(this.albumID); 
+
+        },
         sortAlbums() {
             if (this.albumSortType === 'relevance') {
                 this.state.albums.items = [...this.originalOrder]; 
             } else if (this.albumSortType === 'AZName') {
-                this.state.albums.items.sort((a, b) => {
+                this.state.albums.items = [...this.originalOrder].sort((a, b) => {
                     const nameA = a.data.name.toLowerCase();
                     const nameB = b.data.name.toLowerCase();
                     if (nameA < nameB) return -1;
                     if (nameA > nameB) return 1;
                     return 0;
                 });
-            } else if (this.albumSortType === 'ZAName') {
-                this.state.albums.items.sort((a, b) => {
-                    const nameA = a.data.name.toLowerCase();
-                    const nameB = b.data.name.toLowerCase();
-                    if (nameA > nameB) return -1;
-                    if (nameA < nameB) return 1;
-                    return 0;
-                });
             } else if (this.albumSortType === 'date') {
-                this.state.albums.items.sort((a, b) => {
+                this.state.albums.items = [...this.originalOrder].sort((a, b) => {
                     const yearA = parseInt(a.data.date.year);
                     const yearB = parseInt(b.data.date.year);
                     return yearA - yearB;
                 });
             }
+        },
+        handleAlbumItemClick(album){
+            this.albumItemClicked = true;
+            //ID generation
+            let id = album.data.uri; 
+            id = id.replace("spotify:album:", ""); 
+            this.albumID = id; 
+            this.retrieveAlbumData();
         }
     },
     computed: {
@@ -80,12 +101,9 @@ export default {
             return this.state.albums?.items || [];
         }
     },
-    components: { AlbumItem }
+    components: { AlbumItem , AlbumDisplay }
 }
 </script>
-
-
-
 
 
 <style scoped lang="scss">
