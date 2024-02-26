@@ -8,27 +8,26 @@
                 <h1>{{name}}</h1>
                 <p>{{artist}} </p>
                 <div>
-                    <p>{{ formattedDate }} </p>
+                    <p>{{ formattedRealseDate }} </p>
                     <p>{{ total_tracks }} songs </p>  
                     <p> Popularity : {{popularity}}</p>
                 </div>
             </div>
-            <span></span>
-            
-
-
-        </div>
-        <div>
-
         </div>
 
+        <TrackDisplayInAlbum
+            v-for="track in tracks.items"
+            :track_number="track.track_number"
+            :track_name="track.name"
+            :duration="track.duration_ms"
+        />
 
-        <p>{{popularity}}</p>
-
+        
     </div>
 </template>
 
 <script>
+import TrackDisplayInAlbum from "./TrackDisplayInAlbum.vue"
 
 export default {
     name : 'AlbumDisplay',
@@ -36,14 +35,14 @@ export default {
         img_url: String, 
         name : String, 
         artist: String,  
-        realse_date: Date, 
+        realse_date: String, 
         total_tracks: Number, 
         popularity: Number, 
         tracks: Object, 
         
     },
     computed: {
-        formattedDate() {
+        formattedRealseDate() {
             if (!this.realse_date) return '';
             const date = new Date(this.realse_date);
 
@@ -53,7 +52,8 @@ export default {
 
             return `${day}/${month}/${year}`;
         }
-    }
+    }, 
+    components: { TrackDisplayInAlbum  }
 
 }
 </script>

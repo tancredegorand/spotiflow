@@ -1,16 +1,16 @@
 
 
 <template>
-  <SearchList/>
+  <Home/>
 </template>
 
 <script>
-import SearchList from "./components/SearchList.vue"
+import Home from "./components/Home.vue"
 
 
 export default {
   name: "App",
-  components:{SearchList},
+  components:{Home},
 }
 
 

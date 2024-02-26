@@ -1,14 +1,14 @@
 <template>
-    <div class="searchHeader">
-        <input type="text" v-model="searchValue" placeholder="Artist, Album..." @keyup.enter="retrieveSetData"/>
+    <div v-if="Object.keys(state).length !== 0 && albumItemClicked === false  && homeDisplay===false" class="searchList">
+        <span class="backLink" @click="backLinkToHome"> BACK </span>
+        <div class="searchHeader">
+            <input type="text" v-model="searchValue" placeholder="Artist, Album..." @keyup.enter="retrieveSetData"/>
+        </div>
         <select v-model="albumSortType" id="album-sort" @change="sortAlbums">
           <option value="relevance">Relevance</option>
           <option value="AZName">A - Z</option>
           <option value="date">Release date</option>
         </select>
-    </div>
-
-    <div v-if="Object.keys(state).length !== 0 && albumItemClicked === false" class="searchList">
         <AlbumItem
             v-for="album in sortedAlbums"
             :key="album.data.id"
@@ -20,7 +20,8 @@
         />
     </div>
 
-    <div v-if="Object.keys(albumData).length !== 0 && albumItemClicked === true">
+    <div v-else-if="Object.keys(albumData).length !== 0 && albumItemClicked === true && homeDisplay===false">
+        <span class="backLink" @click="backLinkToList"> BACK </span>
         <AlbumDisplay
             :name="albumData.albums[0].name"
             :img_url="albumData.albums[0].images[1].url"
@@ -32,8 +33,21 @@
         />
     </div>
 
+
+    
+    <div  v-else-if="this.homeDisplay==true">
+        <div class="searchHeader">
+            <input type="text" v-model="searchValue" placeholder="Artist, Album..." @keyup.enter="retrieveSetData"/>
+        </div>
+        <p>HOME...</p> 
+    </div>
+
+
     <div v-else>
-        <p>loading...</p> 
+        <div class="searchHeader">
+            <input type="text" v-model="searchValue" placeholder="Artist, Album..." @keyup.enter="retrieveSetData"/>
+        </div>
+        <p>Loading...</p> 
     </div>
 </template>
 
@@ -44,22 +58,24 @@ import { getSearch } from "@/services/api/getSearch.js"
 import { getAlbum } from "@/services/api/getAlbum.js"
 
 export default {
-    name: 'SearchList',
+    name: 'Home',
     data() {
         return {
             state: {},
+            albumData: {},
+            originalOrder: [],
             searchValue: "",
             albumSortType: "relevance",
-            originalOrder: [],
-            albumItemClicked: false,
             albumID: "", 
-            albumData: {}
+            albumItemClicked: false,
+            homeDisplay: true, 
         }; 
     },
     created() {
     },
     methods: {
         async retrieveSetData() {
+            this.homeDisplay=false; 
             this.state = await getSearch(this.searchValue);
             this.originalOrder = [...this.state.albums.items]; 
             this.sortAlbums(); 
@@ -94,6 +110,13 @@ export default {
             id = id.replace("spotify:album:", ""); 
             this.albumID = id; 
             this.retrieveAlbumData();
+        },
+        backLinkToList(){
+            this.albumItemClicked = false;
+            this.albumData = {};
+        },
+        backLinkToHome(){
+            this.homeDisplay = true;
         }
     },
     computed: {
