@@ -5,12 +5,12 @@
                 <img pictureUrl="" v-bind:src="img_url"/>
             </div>
             <div>
-                <h1>{{name}}</h1>
-                <p>{{artist}} </p>
+                <h1>{{ name }}</h1>
+                <p>{{ artist }} </p>
                 <div>
+                    <p>{{ total_tracks }} tracks </p>  
                     <p>{{ formattedRealseDate }} </p>
-                    <p>{{ total_tracks }} songs </p>  
-                    <p> Popularity : {{popularity}}</p>
+                    <p> Popularity : {{ popularity }}</p>
                 </div>
             </div>
         </div>
@@ -21,6 +21,10 @@
             :track_name="track.name"
             :duration="track.duration_ms"
         />
+
+        <div>
+            <p>@ {{ label }} </p>  
+        </div>
 
         
     </div>
@@ -39,6 +43,8 @@ export default {
         total_tracks: Number, 
         popularity: Number, 
         tracks: Object, 
+        label: String,
+        copyright: String,
         
     },
     computed: {

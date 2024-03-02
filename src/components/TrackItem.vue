@@ -18,7 +18,6 @@ export default {
         artist: String,  
         img_url: String, 
         album: String,
-        duration: String,
 
     },
 }
@@ -32,7 +31,8 @@ export default {
         margin: 10px;
         img {
             margin-right: 10px;
-            width : 60px
+            width : 120px;
+            border-radius:10px;
         }
         .trackInfos{
 
