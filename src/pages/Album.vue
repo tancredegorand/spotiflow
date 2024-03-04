@@ -38,10 +38,11 @@ export default {
     },
     methods: {
         async retrieveSetData(){
-            this.albumData = await getAlbum(this.albumID); 
-            if (!this.albumData || !this.albumData.valid) {
-                 this.$router.push('/not-found');
-            }     
+            this.albumData = await getAlbum(this.albumID);
+            if (this.albumData.albums && this.albumData.albums[0] === null) {
+                this.$router.push('/not-found');
+            }
+
         },
         goBack() {
             this.$router.go(-1);

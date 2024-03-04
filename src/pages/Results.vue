@@ -1,5 +1,7 @@
 <template>
-    <div v-if="Object.keys(state).length !== 0" class="searchList">
+    <div v-if="Object.keys(state).length !== 0">
+
+
         <router-link :to="{  path: '/' }">BACK</router-link>
         <div class="searchHeader">
             <input type="text" v-model="searchValue" placeholder="Artist, Album..." @keyup.enter="redirectToResults"/>
@@ -81,6 +83,7 @@
 <script>
 import AlbumItem from "@/components/AlbumItem.vue";
 import TrackItem from "@/components/TrackItem.vue"; 
+import HeaderResult from "@/components/HeaderResult.vue"; 
 import { getSearch } from "@/services/api/getSearch.js";
 
 export default {
@@ -181,15 +184,13 @@ export default {
         },
         
     },
-    components: { AlbumItem, TrackItem }
+    components: { AlbumItem, TrackItem, HeaderResult }
 }
 </script>
 
 
 <style scoped lang="scss">
-    .searchList {
-        background-color: orange;
-    }
+
 
 
 </style>
