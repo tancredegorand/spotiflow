@@ -1,9 +1,7 @@
 <template>
-    <h1>HOME
-    </h1> 
-    <div class="searchHeader">
-        <input type="text" v-model="searchValue" placeholder="Artist, Album..." @keyup.enter="redirectToResults"/>
-    </div>
+    <h1>HOME</h1> 
+
+    <SearchBar/>
 
     <div  v-if="Object.keys(state).length !== 0">
         some songs
@@ -16,6 +14,8 @@
 </template>
 
 <script>
+import SearchBar from "@/components/SearchBar.vue"; 
+
 
 export default {
     name: 'Home',
@@ -26,12 +26,9 @@ export default {
         }; 
     },
     methods: {
-        redirectToResults() {
-            if (this.searchValue.trim() !== ""){
-                this.$router.push({ path: '/results', query: { search_query: this.searchValue } });
-            }
-        }    
-    }
+
+    }, 
+    components: {SearchBar}
 }
 </script>
 

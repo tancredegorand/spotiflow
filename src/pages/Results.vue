@@ -1,25 +1,175 @@
 <template>
+    <div>
+        <router-link :to="{ path: '/' }">BACK</router-link>
+        
+        <SearchBar
+            :searchValue="searchValueData"
+        />
+
+        <div v-if="Object.keys(data).length !== 0"> 
+            <Switch
+                :switchValue="switchValueData"
+                @update:switchValue="updateSwitchValue"
+            />
+            <ResultsGallery
+                :switchValue="switchValueData"
+            />
+        </div>
+        <div v-else>
+            <p>Loading...</p> 
+        </div>
+    </div>
+</template>
+
+<script>
+import SearchBar from "@/components/SearchBar.vue"; 
+import Switch from "@/components/Switch.vue"; 
+import ResultsGallery from "@/components/ResultsGallery.vue"; 
+import { getSearch } from "@/services/api/getSearch.js";
+
+export default {
+    name: 'Results',
+    data() {
+        return {
+            data: {},
+            switchValueData: "top-results", 
+        }; 
+    },
+    created() {
+        this.searchValueData = this.$route.query.search_query; 
+        this.retrieveSetData()
+    }, 
+    methods: {
+        async retrieveSetData() {
+            this.data = await getSearch(this.searchValue); 
+        },
+        updateSwitchValue(newValue) {
+            this.switchValueData = newValue;
+        }
+    },
+    components: { SearchBar, Switch, ResultsGallery }
+}
+
+
+//     data() {
+//         return {
+//             state: {},
+//             originalAlbumOrder: [],
+//             originalTrackOrder: [],
+//             searchValueData: "",
+//             albumSortType: "relevance",
+//             trackSortType: "relevance",
+//             albumID: "", 
+//             switchValue: "top-results",
+//         }; 
+//     },
+//     created() {
+//         this.searchValue = this.$route.query.search_query; 
+//         this.retrieveSetData();
+//     },
+//     methods: {
+//         async retrieveSetData() {
+//             this.searchValueData = value; 
+//             this.state = await getSearch(this.searchValue);
+//             this.originalAlbumOrder = [...this.state.albums.items]; 
+//             this.originalTrackOrder = [...this.state.tracks]; 
+//         },
+//         setSearchValueData(value){
+//         },  
+//         getID(album){
+//             let id = album.data.uri; 
+//             id = id.replace("spotify:album:", ""); 
+//             this.albumID = id; 
+//         },
+//         redirectToResults() {
+//             if (this.searchValue.trim() !== ""){
+//                 this.$router.push({ path: '/results', query: { search_query: this.searchValue } });
+//                 this.state = {};
+//                 this.retrieveSetData();
+//             }
+//         },
+//         redirectToAlbum(album) {
+//             this.getID(album); 
+//             if (this.albumID.trim() !== ""){
+//                 this.$router.push({ path: '/album', query: { id: this.albumID} });
+//             }
+//         }, 
+//         getTrackCover(name) { 
+//             //We can also make a request to the API, but we will optimize it by checking if the URL is already present in the JSON.
+//             const albumItem = this.state.albums.items.find(item => item.data.name === name);
+//             if (albumItem) {
+//                 return albumItem.data.coverArt.sources[0].url;
+//             } else {
+//                 return "./src/components/images/unknowCover.webp"; 
+//             }
+//         }, 
+//         showView(value){
+//             this.switchValue = value;
+//         }
+//     },
+//     computed: {
+//         sortedAlbums() {
+//             if (this.albumSortType === 'relevance') {
+//                 return [...this.originalAlbumOrder]; 
+//             } else if (this.albumSortType === 'AZName') {
+//                 return [...this.originalAlbumOrder].sort((a, b) => {
+//                     const nameA = a.data.name.toLowerCase();
+//                     const nameB = b.data.name.toLowerCase();
+//                     if (nameA < nameB) return -1;
+//                     if (nameA > nameB) return 1;
+//                     return 0;
+//                 });
+//             } else if (this.albumSortType === 'date') {
+//                 return [...this.originalAlbumOrder].sort((a, b) => {
+//                     const yearA = parseInt(a.data.date.year);
+//                     const yearB = parseInt(b.data.date.year);
+//                     return yearA - yearB;
+//                 });
+//             }
+//             return [];
+//         }, 
+//         sortedTracks() {
+//             if (this.trackSortType === 'relevance') {
+//                 return [...this.originalTrackOrder]; 
+//             } else if (this.trackSortType === 'AZName') {
+//                 return [...this.originalTrackOrder].sort((a, b) => {
+//                     const nameA = a.data.name.toLowerCase();
+//                     const nameB = b.data.name.toLowerCase();
+//                     if (nameA < nameB) return -1;
+//                     if (nameA > nameB) return 1;
+//                     return 0;
+//                 });
+//             } 
+//             return [];
+//         }, 
+//         filterdAlbums(){
+//             return this.originalAlbumOrder.slice(0, 2);
+//         },
+//         filterdTracks(){
+//             return this.originalTrackOrder.slice(0, 3);
+//         },
+//     },
+
+
+</script>
+
+
+<style scoped lang="scss">
+
+
+
+</style>
+
+
+<!-- 
     <div v-if="Object.keys(state).length !== 0">
 
+       
+      
+    
 
-        <router-link :to="{  path: '/' }">BACK</router-link>
-        <div class="searchHeader">
-            <input type="text" v-model="searchValue" placeholder="Artist, Album..." @keyup.enter="redirectToResults"/>
-        </div>
-
-        <div class="switch">
-            <input id="toggle-top-results" name="toggle" value="top-results" type="radio" v-model="switchValue">
-            <label for="toggle-top-results" class="btn">Top Results</label>
-            <input id="toggle-tracks"  name="toggle" value="tracks" type="radio" v-model="switchValue">
-            <label for="toggle-tracks" class="btn">Tracks</label>
-            <input id="toggle-album" name="toggle" value="albums" type="radio" v-model="switchValue">
-            <label for="toggle-album" class="btn">Albums</label>
-        </div>
     </div>
 
-    <div v-else>
-        <p>Loading...</p> 
-    </div>
 
     <div v-if="switchValue === 'albums' && Object.keys(state).length !== 0">
         <select v-model="albumSortType" id="album-sort" @change="sortAlbums">
@@ -76,121 +226,5 @@
             :img_url="getTrackCover(track.data.albumOfTrack.name)"
         />
         <button @click="showView('tracks')">See More</button>
-    </div>
-</template>
+    </div> -->
 
-
-<script>
-import AlbumItem from "@/components/AlbumItem.vue";
-import TrackItem from "@/components/TrackItem.vue"; 
-import HeaderResult from "@/components/HeaderResult.vue"; 
-import { getSearch } from "@/services/api/getSearch.js";
-
-export default {
-    name: 'Results',
-    data() {
-        return {
-            state: {},
-            originalAlbumOrder: [],
-            originalTrackOrder: [],
-            searchValue: "",
-            albumSortType: "relevance",
-            trackSortType: "relevance",
-            albumID: "", 
-            switchValue: "top-results",
-        }; 
-    },
-    created() {
-        this.searchValue = this.$route.query.search_query; 
-        this.retrieveSetData();
-    },
-    methods: {
-        async retrieveSetData() {
-            this.state = await getSearch(this.searchValue);
-            this.originalAlbumOrder = [...this.state.albums.items]; 
-            this.originalTrackOrder = [...this.state.tracks]; 
-        },
-        getID(album){
-            let id = album.data.uri; 
-            id = id.replace("spotify:album:", ""); 
-            this.albumID = id; 
-        },
-        redirectToResults() {
-            if (this.searchValue.trim() !== ""){
-                this.$router.push({ path: '/results', query: { search_query: this.searchValue } });
-                this.state = {};
-                this.retrieveSetData();
-            }
-        },
-        redirectToAlbum(album) {
-            this.getID(album); 
-            if (this.albumID.trim() !== ""){
-                this.$router.push({ path: '/album', query: { id: this.albumID} });
-            }
-        }, 
-        getTrackCover(name) { 
-            //We can also make a request to the API, but we will optimize it by checking if the URL is already present in the JSON.
-            const albumItem = this.state.albums.items.find(item => item.data.name === name);
-            if (albumItem) {
-                return albumItem.data.coverArt.sources[0].url;
-            } else {
-                return "./src/components/images/unknowCover.webp"; 
-            }
-        }, 
-        showView(value){
-            this.switchValue = value;
-        }
-    },
-    computed: {
-        sortedAlbums() {
-            if (this.albumSortType === 'relevance') {
-                return [...this.originalAlbumOrder]; 
-            } else if (this.albumSortType === 'AZName') {
-                return [...this.originalAlbumOrder].sort((a, b) => {
-                    const nameA = a.data.name.toLowerCase();
-                    const nameB = b.data.name.toLowerCase();
-                    if (nameA < nameB) return -1;
-                    if (nameA > nameB) return 1;
-                    return 0;
-                });
-            } else if (this.albumSortType === 'date') {
-                return [...this.originalAlbumOrder].sort((a, b) => {
-                    const yearA = parseInt(a.data.date.year);
-                    const yearB = parseInt(b.data.date.year);
-                    return yearA - yearB;
-                });
-            }
-            return [];
-        }, 
-        sortedTracks() {
-            if (this.trackSortType === 'relevance') {
-                return [...this.originalTrackOrder]; 
-            } else if (this.trackSortType === 'AZName') {
-                return [...this.originalTrackOrder].sort((a, b) => {
-                    const nameA = a.data.name.toLowerCase();
-                    const nameB = b.data.name.toLowerCase();
-                    if (nameA < nameB) return -1;
-                    if (nameA > nameB) return 1;
-                    return 0;
-                });
-            } 
-            return [];
-        }, 
-        filterdAlbums(){
-            return this.originalAlbumOrder.slice(0, 2);
-        },
-        filterdTracks(){
-            return this.originalTrackOrder.slice(0, 3);
-        },
-        
-    },
-    components: { AlbumItem, TrackItem, HeaderResult }
-}
-</script>
-
-
-<style scoped lang="scss">
-
-
-
-</style>
