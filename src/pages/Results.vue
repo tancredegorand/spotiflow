@@ -14,6 +14,7 @@
             <ResultsGallery
                 :switchValue="switchValueData"
                 :data="data"
+                @update:switchValue="handleSwitchValueUpdate"
             />
         </div>
         <div v-else>
@@ -46,7 +47,10 @@ export default {
         },
         updateSwitchValue(newValue) {
             this.switchValueData = newValue;
-        }
+        }, 
+        handleSwitchValueUpdate(value) {
+            this.switchValueData = value;
+        },
     },
     components: { SearchBar, Switch, ResultsGallery }
 }

@@ -6,7 +6,10 @@
         <TracksGallery :data="data"/>
     </div>
     <div v-if="switchValue === 'top-results'">
-        <TopResultsGallery :data="data"/>
+        <TopResultsGallery 
+        :data="data"
+        @update:switchValue="handleSwitchValueUpdate"
+        />
     </div>
 </template>
 
@@ -22,6 +25,11 @@ export default {
     props: {
         switchValue: String,
         data: Object, 
+    },
+    methods: {
+        handleSwitchValueUpdate(value){
+            this.$emit('update:switchValue', value);
+        }
     },
     components: { AlbumsGallery, TracksGallery, TopResultsGallery }
 }

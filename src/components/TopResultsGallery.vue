@@ -33,6 +33,7 @@ export default {
     props: {
         data: Object
     },
+    emits: ["update:switchValue"],
     data() {
         return {
             albumSortType: "relevance", 
@@ -62,7 +63,7 @@ export default {
             }
         }, 
         showView(value){
-            console.log("emit!")
+            this.$emit('update:switchValue', value);
         }
     },
     computed: {
