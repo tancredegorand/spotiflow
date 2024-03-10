@@ -22,9 +22,10 @@ export default {
 
   },
   methods: {
-    enterSearch(event) { 
+    enterSearch() { 
       if (this.searchInput.trim() !== "") {
         this.$router.push({ path: '/results', query: { search_query: this.searchInput } });
+        location.reload();
       }
     }
   }

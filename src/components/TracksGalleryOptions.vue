@@ -1,5 +1,5 @@
 <template>
-    <select :value="trackSortType" id="track-sort" @input="onTrackSortTypeChanged">
+    <select :value="trackSortType" id="track-sort" @change="onTrackSortTypeChanged">
         <option value="relevance">Relevance</option>
         <option value="AZName">A - Z</option>
     </select>

@@ -1,9 +1,15 @@
 <template>
-    <AlbumsGalleryOptions v-model:albumSortType="albumSortType" />
+    <AlbumsGalleryOptions 
+        :artistList="artistList"
+        :albumSortType="albumSortType" 
+        :selectedArtist="selectedArtist"
+        @update:albumSortType="updateAlbumSortType"
+        @update:selectedArtist="updateSelectedArtist"
+    />
     <div class="albums-gallery">
 
         <AlbumItem
-            v-for="album in sortedAlbums"
+            v-for="album in filteredAlbums"
             :key="album.data.id"
             :name="album.data.name" 
             :artist="album.data.artists.items[0].profile.name"
@@ -31,13 +37,23 @@ export default {
         return {
             albumSortType: "relevance", 
             originalAlbumOrder: [],
+            selectedArtist: "allArtists", 
+            artistList: [],
             albumID: "", 
         }
     },
     created() {
         this.originalAlbumOrder = [...this.data.albums.items]; 
+        this.setArtists(); 
     }, 
     methods: {
+        setArtists(){
+            let artistList = [];
+            this.data.albums.items.forEach(album => {
+                artistList.push(album.data.artists.items[0].profile.name);
+            }); 
+            this.artistList = [...new Set(artistList)];
+        },
         getID(album){
             let id = album.data.uri; 
             id = id.replace("spotify:album:", ""); 
@@ -48,7 +64,13 @@ export default {
             if (this.albumID.trim() !== ""){
                 this.$router.push({ path: '/album', query: { id: this.albumID} });
             }
-        }
+        },
+        updateAlbumSortType(value) {
+            this.albumSortType = value;
+        },
+        updateSelectedArtist(value) {
+            this.selectedArtist = value;
+        },
     },
     computed: {
         sortedAlbums() {
@@ -70,7 +92,19 @@ export default {
                     });
                 }
                 return [];
-            }, 
+            },
+        
+            filteredAlbums() {
+                if (this.selectedArtist === "allArtists") {
+                    return this.sortedAlbums;
+                } else {
+                    return this.sortedAlbums.filter(album => {
+                        const artistName = album.data.artists.items[0].profile.name;
+                        return artistName === this.selectedArtist;
+                    });
+                }
+            }
+
     }, 
     components: { AlbumsGalleryOptions, AlbumItem }
 }
