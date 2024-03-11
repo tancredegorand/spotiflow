@@ -19,7 +19,6 @@
         />  
 
     </div>
-
 </template>
 
 
@@ -27,7 +26,6 @@
 <script>
 import AlbumsGalleryOptions from '@/components/AlbumsGalleryOptions.vue';
 import AlbumItem from '@/components/AlbumItem.vue';
-
 export default {
     name: 'AlbumsGallery',
     props: {

@@ -37,8 +37,18 @@ export default {
             switchValueData: "top-results", 
         }; 
     },
+    computed: {
+        searchValue() {
+            return this.$route.query.search_query; 
+        }
+    },
+    watch: {
+        searchValue() {
+            this.data = {};
+            this.retrieveSetData();
+        }
+    },
     created() {
-        this.searchValue = this.$route.query.search_query; 
         this.retrieveSetData();
     }, 
     methods: {
@@ -54,16 +64,7 @@ export default {
     },
     components: { SearchBar, Switch, ResultsGallery }
 }
-
-
-
-
-
-
-
-
 </script>
-
 
 <style scoped lang="scss">
 
