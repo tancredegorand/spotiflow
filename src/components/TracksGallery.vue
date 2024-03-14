@@ -1,8 +1,14 @@
 <template>
-    <TracksGalleryOptions v-model:trackSortType="trackSortType" />
+    <TracksGalleryOptions 
+        :trackSortType="trackSortType" 
+        :artistList="artistList"
+        :selectedArtist="selectedArtist"
+        @update:trackSortType="updateTrackSortType"
+        @update:selectedArtist="updateSelectedArtist"
+    />
     <div class="tracks-gallery">
         <TrackItem
-            v-for="track in sortedTracks"
+            v-for="track in filteredTracks"
             :name="track.data.name" 
             :artist="track.data.artists.items[0].profile.name"
             :album="track.data.artists.items[0].profile.name"
@@ -27,11 +33,14 @@ export default {
     data() {
         return {
             trackSortType: "relevance", 
+            selectedArtist: "allArtists", 
             originalTrackOrder: [],
+            artistList: [],
         }
     },
     created() {
         this.originalTrackOrder = [...this.data.tracks]; 
+        this.setArtists(); 
     }, 
     methods: {
         getTrackCover(name) { 
@@ -42,7 +51,20 @@ export default {
             } else {
                 return "./src/components/images/unknowCover.webp"; 
             }
-        }
+        }, 
+        setArtists(){
+            let artistList = [];
+            this.data.tracks.forEach(track => {
+                artistList.push(track.data.artists.items[0].profile.name);
+            }); 
+            this.artistList = [...new Set(artistList)];
+        },
+        updateTrackSortType(value) {
+            this.trackSortType = value;
+        },
+        updateSelectedArtist(value) {
+            this.selectedArtist = value;
+        },
     },
     computed: {
         sortedTracks() {
@@ -59,8 +81,19 @@ export default {
             } 
             return [];
         },
+        filteredTracks() {
+            if (this.selectedArtist === "allArtists") {
+                return this.sortedTracks;
+            } else {
+                return this.sortedTracks.filter(track => {
+                    const artistName = track.data.artists.items[0].profile.name;
+                    return artistName === this.selectedArtist;
+                });
+            }
+        }
         
     }, 
+    
     components: { TracksGalleryOptions, TrackItem }
 }
 
