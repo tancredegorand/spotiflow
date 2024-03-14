@@ -42,6 +42,12 @@ export default {
         this.originalTrackOrder = [...this.data.tracks]; 
         this.setArtists(); 
     }, 
+    mounted() {
+        const storedTrackSortType = localStorage.getItem('trackSortType');
+        if (storedTrackSortType !== null) {
+            this.albumSortType = storedTrackSortType;
+        }
+    }, 
     methods: {
         getTrackCover(name) { 
             //We can also make a request to the API, but we will optimize it by checking if the URL is already present in the JSON.

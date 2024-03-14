@@ -27,6 +27,7 @@ export default {
     methods: {
         onTrackSortTypeChanged(event) {
             this.$emit('update:trackSortType', event.target.value);
+            localStorage.setItem('trackSortType', event.target.value);
         }, 
         onArtistChanged(event) {
             this.$emit('update:selectedArtist', event.target.value);

@@ -44,6 +44,12 @@ export default {
         this.originalAlbumOrder = [...this.data.albums.items]; 
         this.setArtists(); 
     }, 
+    mounted() {
+        const storedAlbumSortType = localStorage.getItem('albumSortType');
+        if (storedAlbumSortType !== null) {
+            this.albumSortType = storedAlbumSortType;
+        }
+    }, 
     methods: {
         setArtists(){
             let artistList = [];

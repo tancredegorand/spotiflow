@@ -22,6 +22,7 @@ export default {
     methods: {
         onAlbumSortTypeChanged(event) {
             this.$emit('update:albumSortType', event.target.value);
+            localStorage.setItem('albumSortType', event.target.value);
         }, 
         onArtistChanged(event) {
             this.$emit('update:selectedArtist', event.target.value);
