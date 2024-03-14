@@ -1,0 +1,53 @@
+/*-- Fonts --*/
+
+@font-face {
+    font-family: 'Jomhuria';
+    src: url('@/assets/fonts/Jomhuria-Regular.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Inter-Regular';
+    src: url('@/assets/fonts/Inter-Regular.ttf') format('truetype');
+}
+
+
+
+/*-- Var --*/
+
+:root {
+    --font-title: 'Jomhuria', sans-serif;
+    --font-main: 'Inter-Regular',  sans-serif;
+    --font-title-size: 4rem; 
+    --font-main-size: 1rem; 
+
+    --color-white: #F0F0F0; 
+    --color-black: #0A0A0A; 
+
+}
+
+
+/*-- Base --*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: var(--font-main);
+    font-size: var(--font-main-size);
+
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
+
+
+
+
+
+h1, h2, h3 {
+    font-family: var(--font-title);
+    font-size: var(--font-title-size);
+    line-height: 0.6; 
+}
