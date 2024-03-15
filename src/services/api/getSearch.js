@@ -26,7 +26,7 @@ function getSearchFromJSON(){
 
 
  export async function getSearch(value) {
-    const url = `https://spotify81.p.rapidapi.com/search?q=${value}&type=multi&offset=0&limit=50`;
+    //const url = `https://spotify81.p.rapidapi.com/search?q=${value}&type=multi&offset=0&limit=50`;
     const options = {
      method: 'GET',
      headers: {

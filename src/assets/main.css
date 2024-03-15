@@ -16,11 +16,13 @@
 :root {
     --font-title: 'Jomhuria', sans-serif;
     --font-main: 'Inter-Regular',  sans-serif;
-    --font-title-size: 4rem; 
+    --font-title-size: 3rem; 
     --font-main-size: 1rem; 
 
-    --color-white: #F0F0F0; 
-    --color-black: #0A0A0A; 
+    --color-white: #E6E6E6; 
+    --color-black: #1E1E1E; 
+    --color-orange:#FFD241;
+    --color-gray:#303030;
 
 }
 
@@ -34,7 +36,13 @@
     text-decoration: none;
     font-family: var(--font-main);
     font-size: var(--font-main-size);
+    color: var(--color-white);
 
+}
+
+body{
+    background-color: var(--color-black);
+    color: var(--color-white);
 }
 
 html {
@@ -49,5 +57,7 @@ html {
 h1, h2, h3 {
     font-family: var(--font-title);
     font-size: var(--font-title-size);
-    line-height: 0.6; 
+    line-height: 1; 
+    letter-spacing: 1px;
+
 }

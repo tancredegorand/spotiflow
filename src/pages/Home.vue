@@ -1,21 +1,24 @@
 <template>
-    <h1>SPOTIFLOW</h1> 
+    <div class="display">
 
-    <SearchBar/>
+        <Header/>
 
-    <div  v-if="Object.keys(state).length !== 0">
-        some songs
-    </div>
+        <SearchBar class="seachBar"/>
+
+        <div  v-if="Object.keys(state).length !== 0">
+            some songs
+        </div>
 
 
-    <div v-else>
-        <p>Loading...</p> 
+        <div v-else>
+            <p>Loading...</p> 
+        </div>
     </div>
 </template>
 
 <script>
 import SearchBar from "@/components/SearchBar.vue"; 
-
+import Header from "@/components/Header.vue";
 
 export default {
     name: 'Home',
@@ -28,13 +31,16 @@ export default {
     methods: {
 
     }, 
-    components: {SearchBar}
+    components: {SearchBar, Header}
 }
 </script>
 
 
 <style scoped lang="scss">
-    .searchList {
-        background-color: orange;
-    }
+  .display{
+    margin: 15px;
+  }
+  .seachBar{
+    display: flex;
+  }
 </style>
