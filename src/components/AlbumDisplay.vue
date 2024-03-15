@@ -66,7 +66,7 @@ export default {
 
 <style scoped lang="scss">
     .cover{
-        margin-top: 100px;
+        margin-top: 60px;
         margin-bottom: 30px;
         display: flex;
         align-items: center;
@@ -84,7 +84,6 @@ export default {
         flex-direction: column;
         align-items: center;
         justify-content: center;
-
     }
     .albumStat{
         margin-top: 30px;
@@ -120,4 +119,9 @@ export default {
             opacity: 0.7;
         }
     }
+
+    h2{
+        text-align: center;
+    }
+
 </style>

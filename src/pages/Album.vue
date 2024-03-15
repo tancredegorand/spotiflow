@@ -3,7 +3,7 @@
         <div v-if="Object.keys(albumData).length !== 0">
             <div class="nav" :class="{ 'scrolled': isScrolled }">
                 <img src="/src/assets/icons/backChevron.svg" @click="goBack">
-                <h1 id="title">{{ albumData.albums[0].name }}</h1>
+                <h2 id="title">{{ albumData.albums[0].name }}</h2>
             </div>
             <div class="display">  
                 <AlbumDisplay
@@ -78,17 +78,19 @@ export default {
   position: fixed;
   top: 0;
   width: 100vw;
-  height: 80px;
   padding-top: 15px;
   padding-bottom: 5px;
   display: flex;
   justify-content: center;
+  height: 90px;
 
-  h1{
+  h2{
     opacity: 0;
     transition: 0.2s;
     font-size: 3rem; 
     margin-top: 7px;
+    text-align: center;
+    max-width: 75vw;
   }
 
   img {
@@ -97,10 +99,13 @@ export default {
     left: 15px;
   }
 
-  &.scrolled h1 {
-    opacity: 1;
-    transition: 0.2s;
-    
-  }
+  &.scrolled{
+    height: auto;
+    h2{
+        opacity: 1;
+        transition: 0.2s;
+    }
+        
+  } 
 }
 </style>
