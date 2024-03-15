@@ -3,7 +3,7 @@
         <img pictureUrl="" v-bind:src="img_url"/>
         <div class="trackInfos">
             <p class="name">{{ name }}</p>
-            <p>{{ artist }}</p>
+            <p class="artist">{{ artist }}</p>
         </div>
 
     </div>
@@ -25,19 +25,24 @@ export default {
 
 <style scoped lang="scss">
     .trackItem {
-        background-color: red;
         display: flex;
         align-items: center;
-        margin: 10px;
+        margin-bottom: 10px;
         img {
             margin-right: 10px;
-            width : 120px;
-            border-radius:10px;
+            width : 80px;
+            border-radius:5px;
         }
-        .trackInfos{
-
+        .trackInfos {
+            .name{
+                font-size:var(--font-main-size);
+                margin-bottom: 10px;
+            }
+            .artist{
+                margin-right:20px;
+                opacity: 0.7;
+            }
         }
     }
-
 
 </style>

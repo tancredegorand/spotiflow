@@ -29,19 +29,18 @@ export default {
 
 <style scoped lang="scss">
     .albumItem {
-        background-color: red;
         display: flex;
         align-items: center;
-        margin: 10px;
+        margin-bottom: 10px;
         img {
             margin-right: 10px;
-            width : 120px;
-            border-radius:10px;
+            width : 80px;
+            border-radius:5px;
         }
         .albumInfos {
-            background-color:orange;
             .name{
-                font-size:1.4rem;
+                font-size:var(--font-main-size);
+                margin-bottom: 10px;
             }
             div{
                 display:flex; 
@@ -49,6 +48,7 @@ export default {
                 width:100%;
                 p{
                     margin-right:20px;
+                    opacity: 0.7;
                 }
             }
         }

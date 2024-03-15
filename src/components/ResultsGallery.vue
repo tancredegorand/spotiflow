@@ -39,10 +39,3 @@ export default {
 
 <style scoped lang="scss">
 </style>
-
-<!-- 
-
-
-<div v-else-if="switchValue === 'top-results' && Object.keys(state).length !== 0">
-  
-</div> -->

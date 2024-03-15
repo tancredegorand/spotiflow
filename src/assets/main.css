@@ -16,7 +16,8 @@
 :root {
     --font-title: 'Jomhuria', sans-serif;
     --font-main: 'Inter-Regular',  sans-serif;
-    --font-title-size: 3rem; 
+    --font-title-size: 4rem; 
+    --font-title-size2: 3Rem; 
     --font-main-size: 1rem; 
 
     --color-white: #E6E6E6; 
@@ -54,10 +55,17 @@ html {
 
 
 
-h1, h2, h3 {
+h1 {
     font-family: var(--font-title);
     font-size: var(--font-title-size);
     line-height: 1; 
-    letter-spacing: 1px;
+    letter-spacing: 2px;
 
 }
+
+h2{
+    font-family: var(--font-title);
+    font-size: var(--font-title-size2);
+    letter-spacing: 2px;
+}
+

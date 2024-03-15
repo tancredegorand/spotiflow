@@ -1,24 +1,31 @@
 <template>
-<h2>Albums</h2>
-  <AlbumItem
-        v-for="album in filterdAlbums"
-        :key="album.data.id"
-        :name="album.data.name" 
-        :artist="album.data.artists.items[0].profile.name"
-        :img_url="album.data.coverArt.sources[0].url"
-        :date="album.data.date.year"
-        @click="redirectToAlbum(album)"
-    />
-    <button @click="showView('albums')" >See More</button>
-  <h2>Tracks</h2>
-  <TrackItem
-        v-for="track in filterdTracks"
-        :name="track.data.name" 
-        :artist="track.data.artists.items[0].profile.name"
-        :album="track.data.artists.items[0].profile.name"
-        :img_url="getTrackCover(track.data.albumOfTrack.name)"
-    />
-    <button @click="showView('tracks')">See More</button>
+    <section class="albumSection">
+        <h2>ALBUMS</h2>
+        <AlbumItem
+                v-for="album in filterdAlbums"
+                :key="album.data.id"
+                :name="album.data.name" 
+                :artist="album.data.artists.items[0].profile.name"
+                :img_url="album.data.coverArt.sources[0].url"
+                :date="album.data.date.year"
+                @click="redirectToAlbum(album)"
+            />
+            <button class="actionBtn" @click="showView('albums')" >See More</button>
+    </section>
+    <section class="trackSection" >
+        <h2>TRACKS</h2>
+        <TrackItem
+            v-for="track in filterdTracks"
+            :name="track.data.name" 
+            :artist="track.data.artists.items[0].profile.name"
+            :album="track.data.artists.items[0].profile.name"
+            :img_url="getTrackCover(track.data.albumOfTrack.name)"
+        />
+        <button class="actionBtn" @click="showView('tracks')">See More</button>
+    </section>
+
+
+
 
 </template>
 
@@ -80,4 +87,25 @@ export default {
 
 
 <style scoped lang="scss">
+    .actionBtn {
+        background: transparent;
+        padding-right: 15px;
+        padding-left: 15px;
+        border: none;
+        height: 40px;
+        background-color: var(--color-gray);
+        border-radius: 5px;
+        transition: 0.2s;
+        
+    }
+    .actionBtn:hover{
+        color: var(--color-black);
+        background-color: var(--color-orange);
+        transition: 0.2s;
+    }
+
+    .albumSection, .trackSection{
+        margin-bottom: 30px;
+    }
+
 </style>
