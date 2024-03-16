@@ -100,11 +100,11 @@ export default {
         
             filteredAlbums() {
                 if (this.selectedArtist === "allArtists") {
-                    return this.sortedAlbums;
+                    return this.sortedAlbums.slice(0, 20);
                 } else {
                     return this.sortedAlbums.filter(album => {
                         const artistName = album.data.artists.items[0].profile.name;
-                        return artistName === this.selectedArtist;
+                        return artistName === this.selectedArtist.slice(0, 20);;
                     });
                 }
             }

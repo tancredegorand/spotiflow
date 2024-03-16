@@ -21,6 +21,7 @@ export default {
   methods: {
     updateSwitchValue(event) {
       this.$emit('update:switchValue', event.target.value);
+      localStorage.setItem('switchValue', event.target.value);
     }
   }, 
   computed: {

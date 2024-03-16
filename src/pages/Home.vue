@@ -11,14 +11,17 @@
 
 
         <div v-else>
-            <p>Loading...</p> 
+            <Loading/>
         </div>
     </div>
+    <Footer/>
 </template>
 
 <script>
 import SearchBar from "@/components/SearchBar.vue"; 
 import Header from "@/components/Header.vue";
+import Loading from "@/components/Loading.vue";
+import Footer from "@/components/Footer.vue";
 
 export default {
     name: 'Home',
@@ -31,7 +34,7 @@ export default {
     methods: {
 
     }, 
-    components: {SearchBar, Header}
+    components: {SearchBar, Header, Loading, Footer}
 }
 </script>
 

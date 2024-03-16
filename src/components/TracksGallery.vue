@@ -32,7 +32,7 @@ export default {
     },
     data() {
         return {
-            trackSortType: "relevance", 
+            trackSortType: "", 
             selectedArtist: "allArtists", 
             originalTrackOrder: [],
             artistList: [],
@@ -45,7 +45,9 @@ export default {
     mounted() {
         const storedTrackSortType = localStorage.getItem('trackSortType');
         if (storedTrackSortType !== null) {
-            this.albumSortType = storedTrackSortType;
+            this.trackSortType = storedTrackSortType;
+        }else {
+            this.trackSortType = "relevance"; 
         }
     }, 
     methods: {
@@ -89,11 +91,11 @@ export default {
         },
         filteredTracks() {
             if (this.selectedArtist === "allArtists") {
-                return this.sortedTracks;
+                return this.sortedTracks.slice(0, 20);
             } else {
                 return this.sortedTracks.filter(track => {
                     const artistName = track.data.artists.items[0].profile.name;
-                    return artistName === this.selectedArtist;
+                    return artistName === this.selectedArtist.slice(0, 20);
                 });
             }
         }

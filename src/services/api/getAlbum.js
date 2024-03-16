@@ -26,7 +26,7 @@ function getAlbumFromJSON(){
 
 
 export async function getAlbum(id) {
-    const url = `https://spotify81.p.rapidapi.com/albums?ids=${id}`;
+    //const url = `https://spotify81.p.rapidapi.com/albums?ids=${id}`;
     const options = {
      method: 'GET',
      headers: {

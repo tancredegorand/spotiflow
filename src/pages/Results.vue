@@ -21,10 +21,11 @@
                 />
             </div>
             <div v-else>
-                <p>Loading...</p> 
+                <Loading/>
             </div>
         </div>
     </div>
+    <Footer/>
 </template>
 
 <script>
@@ -32,6 +33,8 @@ import SearchBar from "@/components/SearchBar.vue";
 import Switch from "@/components/Switch.vue"; 
 import ResultsGallery from "@/components/ResultsGallery.vue"; 
 import Header from "@/components/Header.vue";
+import Loading from "@/components/Loading.vue";
+import Footer from "@/components/Footer.vue";
 import { getSearch } from "@/services/api/getSearch.js";
 
 export default {
@@ -39,23 +42,27 @@ export default {
     data() {
         return {
             data: {},
-            switchValueData: "top-results", 
+            switchValueData: "", 
         }; 
     },
-    computed: {
-        searchValue() {
-            return this.$route.query.search_query; 
+    created() {
+        this.retrieveSetData();
+    }, 
+    mounted() {
+        const storedSwitchValue = localStorage.getItem('switchValue');
+        if (storedSwitchValue !== null) {
+            this.switchValueData = storedSwitchValue;
+        } else {
+            this.switchValueData = "top-results";
         }
     },
+
     watch: {
         searchValue() {
             this.data = {};
             this.retrieveSetData();
         }
     },
-    created() {
-        this.retrieveSetData();
-    }, 
     methods: {
         async retrieveSetData() {
             this.data = await getSearch(this.searchValue); 
@@ -67,7 +74,12 @@ export default {
             this.switchValueData = value;
         },
     },
-    components: { SearchBar, Switch, ResultsGallery, Header}
+    computed: {
+        searchValue() {
+            return this.$route.query.search_query; 
+        }
+    },
+    components: { SearchBar, Switch, ResultsGallery, Header, Loading, Footer}
 }
 </script>
 

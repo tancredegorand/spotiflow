@@ -23,13 +23,18 @@
 
 
         <div v-else>
-            <p>Loading...</p> 
+            <Loading/>
         </div>
+
+        <Footer/>
+
     </section>
 </template>
 
 <script>
 import AlbumDisplay from "@/components/AlbumDisplay.vue";
+import Loading from "@/components/Loading.vue";
+import Footer from "@/components/Footer.vue";
 import { getAlbum } from "@/services/api/getAlbum.js";
 
 export default {
@@ -63,7 +68,7 @@ export default {
       this.isScrolled = window.scrollY > 400;
     },
   },
-  components: { AlbumDisplay }
+  components: { AlbumDisplay, Loading, Footer }
 }
 </script>
 
