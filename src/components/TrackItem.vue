@@ -5,6 +5,7 @@
             <p class="name">{{ name }}</p>
             <p class="artist">{{ artist }}</p>
         </div>
+        <p class="duration">{{formattedDuration}}</p>
 
     </div>
 </template>
@@ -18,7 +19,19 @@ export default {
         artist: String,  
         img_url: String, 
         album: String,
+        duration: Number,
 
+    },
+    computed: {
+        formattedDuration() {
+            if (!this.duration) return '';
+            
+            const totalSeconds = parseInt(this.duration) / 1000; 
+            const minutes = Math.floor(totalSeconds / 60);
+            const seconds = Math.floor(totalSeconds % 60);
+
+            return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+        }
     },
 }
 </script>
@@ -27,10 +40,17 @@ export default {
     .trackItem {
         display: flex;
         align-items: center;
+
         margin-bottom: 10px;
         padding: 10px;
         border-radius: 5px;
         transition: 0.2s;
+
+        .duration{
+            flex-grow: 1;
+            opacity: 0.7;
+            text-align: right;
+        }
         img {
             margin-right: 10px;
             width : 80px;
@@ -47,6 +67,7 @@ export default {
             }
         }
     }
+    
 
     .trackItem:hover{
         background-color: var(--color-gray);

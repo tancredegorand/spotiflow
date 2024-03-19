@@ -48,6 +48,7 @@ export default {
     background-color: var(--color-gray);
     border-radius: 5px;
     position: relative;
+    max-width: 455px;
 
     .searchIcon{
       width: 20px;

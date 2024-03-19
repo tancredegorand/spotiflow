@@ -73,6 +73,7 @@ export default {
         justify-content: center;
         img{
             border-radius: 5px;
+            width: 80vw;
             box-shadow: -2px 36px 76px -33px rgba(0,0,0,0.79);
             -webkit-box-shadow: -2px 36px 76px -33px rgba(0,0,0,0.79);
             -moz-box-shadow: -2px 36px 76px -33px rgba(0,0,0,0.79);
@@ -83,7 +84,6 @@ export default {
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
     }
     .albumStat{
         margin-top: 30px;
@@ -94,16 +94,7 @@ export default {
             opacity: 0.7;
         }
     }
-
-    .line{
-        display: block;
-        height: 2px;
-        width: 100%;
-        background-color: var(--color-gray);
-        margin-top: 5px;
-        margin-bottom: 10px;
-    }
-
+    
     table {
         border-top: solid 2px var(--color-gray);
         border-bottom: solid 2px var(--color-gray);
@@ -127,7 +118,7 @@ export default {
     }
 
 
-    @media screen and (min-width: 600px){
+    @media screen and (min-width: 800px){
         .display{
             display: flex;
             
@@ -136,6 +127,9 @@ export default {
             }
             .albumInfo{
                 width: 40vw;
+                max-height: 80vh;
+                overflow-y: auto;
+                padding-right: 15px;
             }
             
 

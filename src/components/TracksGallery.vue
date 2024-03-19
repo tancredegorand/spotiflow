@@ -13,6 +13,7 @@
             :artist="track.data.artists.items[0].profile.name"
             :album="track.data.artists.items[0].profile.name"
             :img_url="getTrackCover(track.data.albumOfTrack.name)"
+            :duration="track.data.duration.totalMilliseconds"
         />
 
     </div>

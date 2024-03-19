@@ -29,6 +29,8 @@ export default {
     }
 
 
+    
+
 }
 </script>
 
@@ -53,5 +55,13 @@ export default {
     }
  }
 
+ .TrackDisplayInAlbum:hover{
+    td{
+        cursor: pointer;
+        color: var(--color-orange);
+    }
+ }
+
+ 
 
 </style>
