@@ -12,8 +12,7 @@
                 <p>{{ formattedRealseDate }} </p>
                 <p> Popularity : {{ popularity }}</p>
             </div>
-        </section>
-        <table>
+            <table>
             <tbody>
                 <TrackDisplayInAlbum
                     v-for="track in tracks.items"
@@ -26,6 +25,7 @@
         <div class="label">
             <p>@ {{ label }} </p>  
         </div>
+        </section>
 
     </div>
 </template>
@@ -115,13 +115,36 @@ export default {
 
     .label{
         margin-top: 30px;
+        width: 100%;
         p{
             opacity: 0.7;
+
         }
     }
 
     h2{
         text-align: center;
+    }
+
+
+    @media screen and (min-width: 600px){
+        .display{
+            display: flex;
+            
+            .cover{
+                width: 50vw;
+            }
+            .albumInfo{
+                width: 40vw;
+            }
+            
+
+        }
+        .cover img{
+            width: 40vw;
+            max-width: 550px;
+        }
+
     }
 
 </style>

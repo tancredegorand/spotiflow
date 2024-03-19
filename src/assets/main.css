@@ -38,6 +38,7 @@
     font-family: var(--font-main);
     font-size: var(--font-main-size);
     color: var(--color-white);
+    cursor:default;
 
 }
 
@@ -69,3 +70,11 @@ h2{
     letter-spacing: 2px;
 }
 
+
+a p{
+    cursor: pointer;
+  }
+
+button{
+    cursor: pointer;
+}

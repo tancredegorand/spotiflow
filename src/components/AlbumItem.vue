@@ -2,9 +2,9 @@
     <div class="albumItem">
         <img pictureUrl="" v-bind:src="img_url"/>
         <div class="albumInfos">
-            <p class="name">{{ name }}</p>
+            <p class="name">{{ truncatedName }}</p>
             <div>
-                <p>{{ artist }}</p>
+                <p>{{ truncatedArtist }}</p>
                 <p>{{ date }}</p>
             </div>
 
@@ -24,34 +24,63 @@ export default {
         date: Number, 
 
     },
+    computed: {
+        truncatedName() {
+            if (this.name && this.name.length > 15) {
+                return this.name.substring(0, 15) + "…";
+            }
+            return this.name;
+        },
+        truncatedArtist() {
+            if (this.artist && this.artist.length > 10) {
+                return this.artist.substring(0, 10) + "…";
+            }
+            return this.artist;
+        }
+    }
 }
 </script>
 
 <style scoped lang="scss">
     .albumItem {
         display: flex;
-        align-items: center;
-        margin-bottom: 10px;
+        flex-direction:column;
+        border-radius: 5px;
+        padding: 10px;
+        transition: 0.2s;
         img {
-            margin-right: 10px;
-            width : 80px;
+            width : 140px;
             border-radius:5px;
         }
         .albumInfos {
+            margin-top: 5px;
+
             .name{
                 font-size:var(--font-main-size);
-                margin-bottom: 10px;
             }
             div{
-                display:flex; 
-                flex-direction:raw; 
+                display:flex;
+                flex-wrap: wrap;
+                gap: 15px;
                 width:100%;
                 p{
-                    margin-right:20px;
                     opacity: 0.7;
+                    font-size: 0.9rem;
                 }
             }
         }
     }
+    .albumItem:hover{
+        background-color: var(--color-gray);
+        transition: 0.2s;
+    }
 
+
+    @media screen and (min-width: 600px){
+        .albumItem{
+            img {
+                width : 200px;
+            }
+        }
+    }
 </style>

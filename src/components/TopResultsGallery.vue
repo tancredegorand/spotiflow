@@ -1,7 +1,8 @@
 <template>
     <section class="albumSection">
         <h2>ALBUMS</h2>
-        <AlbumItem
+        <div>
+            <AlbumItem
                 v-for="album in filterdAlbums"
                 :key="album.data.id"
                 :name="album.data.name" 
@@ -10,7 +11,8 @@
                 :date="album.data.date.year"
                 @click="redirectToAlbum(album)"
             />
-            <button class="actionBtn" @click="showView('albums')" >See More</button>
+        </div>
+        <button class="actionBtn" @click="showView('albums')" >See More</button>
     </section>
     <section class="trackSection" >
         <h2>TRACKS</h2>
@@ -106,6 +108,14 @@ export default {
 
     .albumSection, .trackSection{
         margin-bottom: 30px;
+    }
+
+    .albumSection div {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-bottom: 5px;
+
     }
 
 </style>

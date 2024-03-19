@@ -86,6 +86,7 @@ export default {
 <style scoped lang="scss">
     .display{
         margin: 15px;
+        min-height: 80vh;
 
         .searchResult{
             display: flex;
@@ -97,6 +98,7 @@ export default {
             .canelBtn{
                 color: var(--color-orange);
                 margin-left: 15px;
+                cursor: pointer;
             }
 
         }

@@ -26,7 +26,7 @@ export default {
 <style scoped lang="scss">
 
   .footer{
-    padding: 10px;
+    padding: 40px;
     background-color: var(--color-gray);
     width: 100vw;
     display: flex;
@@ -58,9 +58,13 @@ export default {
     flex-direction: column;
   }
 
-  @media (min-width: 701px) {
+  @media (min-width: 400px) {
     .footer{
       flex-direction: row;
+
+      div{
+        text-align: left;
+      }
     }
     .imac a{
       flex-direction: row;
@@ -70,6 +74,27 @@ export default {
     }
   }
 
+  
+
+  @media screen and (min-width: 600px){
+        .display{
+            display: flex;
+            
+            .cover{
+                width: 50vw;
+            }
+            .albumInfo{
+                width: 40vw;
+            }
+            
+
+        }
+        .cover img{
+            width: 40vw;
+            max-width: 550px;
+        }
+
+    }
 
 
 </style>

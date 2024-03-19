@@ -28,6 +28,9 @@ export default {
         display: flex;
         align-items: center;
         margin-bottom: 10px;
+        padding: 10px;
+        border-radius: 5px;
+        transition: 0.2s;
         img {
             margin-right: 10px;
             width : 80px;
@@ -43,6 +46,11 @@ export default {
                 opacity: 0.7;
             }
         }
+    }
+
+    .trackItem:hover{
+        background-color: var(--color-gray);
+        transition: 0.2s;
     }
 
 </style>

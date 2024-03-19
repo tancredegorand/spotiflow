@@ -117,4 +117,14 @@ export default {
 
 
 <style scoped lang="scss">
+
+.albums-gallery {
+    width: 100vw;
+    display: flex;
+    max-width: 90vw;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+
 </style>

@@ -8,7 +8,7 @@
             <div class="display">  
                 <AlbumDisplay
                     :name="albumData.albums[0].name"
-                    :img_url="albumData.albums[0].images[1].url"
+                    :img_url="albumData.albums[0].images[0].url"
                     :artist="albumData.albums[0].artists[0].name"  
                     :realse_date="albumData.albums[0].release_date"
                     :total_tracks="albumData.albums[0].total_tracks"
@@ -102,6 +102,7 @@ export default {
     position: absolute;
     top: 30px;
     left: 15px;
+    cursor: pointer;
   }
 
   &.scrolled{
@@ -113,4 +114,16 @@ export default {
         
   } 
 }
+
+
+@media screen and (min-width: 600px){
+
+  .nav{
+    background-color: var(--color-black)0;
+    position: absolute;
+  }
+}
+
+
+
 </style>
