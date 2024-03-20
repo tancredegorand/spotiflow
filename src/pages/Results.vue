@@ -49,6 +49,7 @@ export default {
         this.retrieveSetData();
     }, 
     mounted() {
+        document.title = "Spotiflow - Search";
         const storedSwitchValue = localStorage.getItem('switchValue');
         if (storedSwitchValue !== null) {
             this.switchValueData = storedSwitchValue;

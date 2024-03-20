@@ -1,4 +1,5 @@
 <template>
+    <Header/>
     <h1>Not Found</h1>
     <router-link :to="{  path: '/' }">ACCUEIL</router-link>
     <Footer/>
@@ -7,11 +8,16 @@
 
 <script>
 import Footer from '@/components/Footer.vue';
+import Header from '@/components/Header.vue';
 
 export default {
     name: 'NotFound',
-    components: {Footer}
+    mounted() {
+        document.title = "Spotiflow -  Not Found";
+    },
+    components: {Footer, Header}
 }
+
 </script>
 
 

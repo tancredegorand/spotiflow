@@ -60,6 +60,9 @@ export default {
       if (this.albumData.albums && this.albumData.albums[0] === null) {
         this.$router.push('/not-found');
       }
+      else{
+        document.title = "Spotiflow - "+this.albumData.albums[0].name;
+      }
     },
     goBack() {
       this.$router.go(-1);
