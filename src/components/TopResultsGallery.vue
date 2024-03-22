@@ -22,6 +22,7 @@
             :artist="track.data.artists.items[0].profile.name"
             :album="track.data.artists.items[0].profile.name"
             :img_url="getTrackCover(track.data.albumOfTrack.name)"
+            :duration="track.data.duration.totalMilliseconds"
         />
         <button class="actionBtn" @click="showView('tracks')">See More</button>
     </section>
@@ -89,23 +90,7 @@ export default {
 
 
 <style scoped lang="scss">
-    .actionBtn {
-        background: transparent;
-        padding-right: 15px;
-        padding-left: 15px;
-        border: none;
-        height: 40px;
-        background-color: var(--color-gray);
-        border-radius: 5px;
-        transition: 0.2s;
-        
-    }
-    .actionBtn:hover{
-        color: var(--color-black);
-        background-color: var(--color-orange);
-        transition: 0.2s;
-    }
-
+   
     .albumSection, .trackSection{
         margin-bottom: 30px;
     }

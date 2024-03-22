@@ -78,3 +78,19 @@ a p{
 button{
     cursor: pointer;
 }
+.actionBtn {
+    background: transparent;
+    padding-right: 15px;
+    padding-left: 15px;
+    border: none;
+    height: 40px;
+    background-color: var(--color-gray);
+    border-radius: 5px;
+    transition: 0.2s;
+    
+}
+.actionBtn:hover{
+    color: var(--color-black);
+    background-color: var(--color-orange);
+    transition: 0.2s;
+}
