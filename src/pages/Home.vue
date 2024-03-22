@@ -53,6 +53,7 @@ export default {
     background-position: center;
     background-image: url(/src/assets/images/background.jpg);
     background-repeat: no-repeat;
+    background-attachment: fixed;
     min-height: 90vh;
 
     .hook{

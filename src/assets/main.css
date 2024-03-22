@@ -22,9 +22,9 @@
 
     --color-white: #E6E6E6; 
     --color-black: #1E1E1E; 
+    --color-black-opacity: rgba(30, 30, 30, 0.75);
     --color-orange:#FFD241;
     --color-gray:#303030;
-
 }
 
 

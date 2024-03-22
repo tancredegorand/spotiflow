@@ -27,7 +27,8 @@ export default {
 
 <style scoped lang="scss">
 .card{
-  background-color: var(--color-black);
+  background-color: var(--color-black-opacity);
+  backdrop-filter: blur(10px);
   border-radius: 5px;
   display: flex;
   flex-direction: column;

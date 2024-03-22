@@ -2,12 +2,12 @@
 
   <section class="about" id="about">
       <div class="card leftCard">
-        <h2>SPOTIFLOW</h2>
+        <h2>PROJECT</h2>
         <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde optio natus qui magni laboriosam voluptatem dolore a quaerat obcaecati, laudantium sapiente ea doloremque quidem dolor maxime doloribus voluptates molestias aspernatur.</p>
       </div>
       <div class="rightCards">
         <div class="card">
-          <h2>PROJECT</h2>
+          <h2>SPOTIFLOW</h2>
           <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde optio natus qui magni laboriosam voluptatem dolore a quaerat obcaecati, laudantium sapiente ea doloremque quidem dolor maxime doloribus voluptates molestias aspernatur.</p>
         </div>
         <div class="card">
@@ -39,7 +39,8 @@ export default {
 
 
     .card{
-      background-color: var(--color-black);
+      background-color: var(--color-black-opacity);
+      backdrop-filter: blur(10px);
       border-radius: 5px;
       margin-bottom: 15px;
       text-align: center;
