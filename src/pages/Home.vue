@@ -3,14 +3,18 @@
 
         <Header/>
 
-        <SearchBar class="seachBar"/>
+
         <div class="container">
-           
-        <h1 class="hook">FOR MUSIC LOVERS</h1>
+            
+          <h1 class="hook">FOR MUSIC LOVERS</h1>
 
-        <TrendingArtists/>
+          <div class="searchDiv">
+            <SearchBar class="seachBar"/>
+          </div>
 
-        <About/>
+          <TrendingArtists/>
+
+          <About/>
 
         </div>
        
@@ -61,16 +65,17 @@ export default {
       text-align: center;
       font-size: 8rem;
       line-height: 0.7;
-
-      h2{
-        box-shadow: -2px 16px 169px -23px rgba(0,0,0,1);
-        -webkit-box-shadow: -2px 16px 169px -23px rgba(0,0,0,1);
-        -moz-box-shadow: -2px 16px 169px -23px rgba(0,0,0,1);
-
-      }
     }
 
   }
+
+  .searchDiv{
+    background-color: var(--color-black-opacity);
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 60px;
+  }
+
   .seachBar{
     display: flex;
   }
@@ -81,5 +86,9 @@ export default {
       margin-left: auto;
     }
 
+
+  h1{
+      margin-bottom: 30px;
+    }
 
 </style>

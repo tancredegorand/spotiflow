@@ -1,6 +1,6 @@
 <template>
     <div class="trendingListeners">
-      <p>Artists with the most monthly listeners trends</p>
+      <p>Artists with the most monthly listeners trends :</p>
       <div class="list">
         <TrendingCards v-for="artist in filterdTrendingArtists"
           :name="artist.artist"
@@ -48,6 +48,10 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  p{
+    text-align: center;
+  }
 
     .list{
       margin-top: 15px;

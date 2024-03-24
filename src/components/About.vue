@@ -32,7 +32,7 @@ export default {
 
 
 .about{
-  margin-top: 120px;
+  margin-top: 60px;
   display: flex;
   flex-direction: column;
 

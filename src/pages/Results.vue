@@ -92,6 +92,7 @@ export default {
         .searchResult{
             display: flex;
             align-items: center;
+            max-width: 515px;
             .searchBarResult{
                 flex-grow: 1; 
                 display: flex;
