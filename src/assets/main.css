@@ -21,10 +21,18 @@
     --font-main-size: 1rem; 
 
     --color-white: #E6E6E6; 
-    --color-black: #1E1E1E; 
-    --color-black-opacity: rgba(30, 30, 30, 0.75);
-    --color-orange:#FFD241;
+    --color-black: #121212; 
+    --color-black-opacity: rgba(30, 30, 30, 0.3);
+    --color-orange:#FFBE00;
     --color-gray:#303030;
+    --color-p:#989898; 
+
+    --border-radius:10px; 
+    --blur: 30px; 
+
+    --margin:15px; 
+    --margin1 : calc(2 * var(--margin));
+    --margin2 : calc(4 * var(--margin));
 }
 
 
@@ -56,7 +64,7 @@ html {
 
 
 
-h1 {
+h1, h1 span {
     font-family: var(--font-title);
     font-size: var(--font-title-size);
     line-height: 1; 
@@ -79,18 +87,22 @@ button{
     cursor: pointer;
 }
 .actionBtn {
-    background: transparent;
-    padding-right: 15px;
-    padding-left: 15px;
+    margin-top: var(--margin1);
+    width: 100%;
     border: none;
     height: 40px;
-    background-color: var(--color-gray);
-    border-radius: 5px;
-    transition: 0.2s;
+    color: var(--color-black);
+    background-color: var(--color-orange);
+    border-radius: var(--border-radius);
+    font-family: 'Jomhuria';
+    font-size: 2rem;
+    line-height: 0.5;
+    padding-top: 5px;
+    transition: 0.2s; 
     
 }
 .actionBtn:hover{
-    color: var(--color-black);
-    background-color: var(--color-orange);
+    color: var(--color-white);
+    background-color: var(--color-gray);
     transition: 0.2s;
 }

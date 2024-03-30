@@ -9,7 +9,6 @@
       <div class="rightCards">
         <div class="card">
           <h2>SPOTIFLOW</h2>
-          <p>Spotiflow is an <a href="https://www.ingenieur-imac.fr" target="_blank">IMAC student</a> project inspired by the most popular music streaming sites. This platform allows you to search and filter to discover music from a vast selection of songs and albums, just like you would on other streaming platforms.</p>
         </div>
         <div class="card">
           <h2>CONTACT</h2>

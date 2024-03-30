@@ -17,7 +17,7 @@ export default {
 <style scoped lang="scss">
 
 .loading-container{
-  height: 70vh;
+  height: 80vh;
   display: flex;
   align-items: center;
   justify-content: center;

@@ -6,10 +6,15 @@
 
         <div class="container">
             
-          <h1 class="hook">FOR MUSIC LOVERS</h1>
+          <h1 class="hook">FOR <span>MUSIC</span> LOVERS</h1>
 
           <div class="searchDiv">
             <SearchBar class="seachBar"/>
+          </div>
+
+          <div class="intro">
+            <p>Spotiflow is an <a href="https://www.ingenieur-imac.fr" target="_blank">IMAC student</a> project inspired by the most popular music streaming sites. This platform allows you to search and filter to discover music from a vast selection of songs and albums, just like you would on other streaming platforms.</p>
+
           </div>
 
           <TrendingArtists/>
@@ -52,30 +57,46 @@ export default {
 
 
   .display{
-    padding: 15px;
-    background-size: cover;
-    background-position: center;
-    background-image: url(/src/assets/images/background.jpg);
-    background-repeat: no-repeat;
-    background-attachment: fixed;
     min-height: 90vh;
 
     .hook{
-      margin-top: 60px;
+      margin-top: var(--margin2); 
       text-align: center;
       font-size: 8rem;
       line-height: 0.7;
+    }
+    .hook span{
+      margin-top: var(--margin2);
+      text-align: center;
+      font-size: 8rem;
+      line-height: 0.7;
+      color: var(--color-orange);
+      text-shadow: 0px 0px 4px var(--color-orange);
+
     }
 
   }
 
   .searchDiv{
-    background-color: var(--color-black-opacity);
-    padding: 15px;
-    border-radius: 5px;
-    margin-bottom: 60px;
+    margin-bottom: var(--margin2);
+
   }
 
+  .intro {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    p{
+      color: var(--color-p);
+      text-align: center;
+      width: 60vw;
+
+      a{
+        color: var(--color-p);
+        text-decoration: underline;
+      }
+    }
+  }
   .seachBar{
     display: flex;
   }
@@ -84,6 +105,8 @@ export default {
       max-width: 1000px;
       margin-right: auto;
       margin-left: auto;
+      padding-right: var(--margin);
+      padding-left: var(--margin);
     }
 
 

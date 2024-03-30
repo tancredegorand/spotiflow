@@ -45,9 +45,11 @@ export default {
 <style scoped lang="scss">
   .search{
     height: 50px;
-    background-color: var(--color-gray);
-    border-radius: 5px;
+    background-color: var(--color-black-opacity);
+    backdrop-filter: blur(var(--blur)); 
     position: relative;
+    border-radius: var(--border-radius); 
+    border: 1px solid var(--color-white);
 
     .searchIcon{
       width: 20px;
