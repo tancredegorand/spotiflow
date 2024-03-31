@@ -22,13 +22,14 @@
 
     --color-white: #E6E6E6; 
     --color-black: #121212; 
-    --color-black-opacity: rgba(30, 30, 30, 0.3);
+    --color-black-opacity: rgba(30, 30, 30, 0.1);
     --color-orange:#FFBE00;
     --color-gray:#303030;
-    --color-p:#989898; 
+    --color-gray-opacity: rgba(178, 178, 178, 0.076);
+    --color-p:#646464; 
 
     --border-radius:10px; 
-    --blur: 30px; 
+    --blur: 20px; 
 
     --margin:15px; 
     --margin1 : calc(2 * var(--margin));

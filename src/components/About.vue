@@ -1,22 +1,22 @@
 <template>
-
   <section class="about" id="about">
+    <img id="lines2" src="/src/assets/svg/lines2.svg" alt="">
     <h2 class="title">WEB PROJECT</h2>
     <p>Spotiflow relies on the Vue.js framework to use components, routes, local storage and much more. This site is built on an API powered by Spotify's data, ensuring access to a vast selection of songs and albums.</p>
     <div class="divImg3D">
-        <img id="glow" src="/src/assets/icons/glow.svg" alt="">
-        <img id="vueIcon" src="/src/assets/images/vue.png" alt="">
+        <img id="glow" src="/src/assets/svg/glow.svg" alt="">
+        <img id="vueIcon" src="/src/assets/image/vue.png" alt="">
     </div>
     <div class="cardContact">
       <h3>CONTACT</h3>
       <div class="divVideo">
         <span class="circle"></span>
-        <video src="/src/assets/videos/emoji.webm" autoplay muted loop></video>
+        <video src="/src/assets/video/emoji.webm" autoplay muted loop></video>
       </div>
       <div class="links">
-        <a href="https://www.linkedin.com/in/tancredegorand/" class="link" target="_blank"><img src="/src/assets/icons/linkedin.svg" alt="linkedin"></a>
-        <a href="https://tancredegorand.com/" class="link" target="_blank"><img src="/src/assets/icons/web.svg" alt="tancredegorand.com"></a>
-        <a href="https://linktr.ee/tancredegorand" class="link" target="_blank"><img src="/src/assets/icons/links.svg" alt="links"></a>
+        <a href="https://www.linkedin.com/in/tancredegorand/" class="link" target="_blank"><img src="/src/assets/svg/linkedin.svg" alt="linkedin"></a>
+        <a href="https://tancredegorand.com/" class="link" target="_blank"><img src="/src/assets/svg/web.svg" alt="tancredegorand.com"></a>
+        <a href="https://linktr.ee/tancredegorand" class="link" target="_blank"><img src="/src/assets/svg/links.svg" alt="links"></a>
       </div>
       <a href="https://www.tancredegorand.com/#contact" target="_blank"><button class="actionBtn">Let's collaborate</button></a>
     </div>
@@ -51,8 +51,8 @@ methods: {
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
 
-    const angleX = -(y - centerY) / 5;
-    const angleY = (x - centerX) / 5;
+    const angleX = -(y - centerY) / 8;
+    const angleY = (x - centerX) / 8;
 
     vueIcon.style.transform = `rotateX(${angleX}deg) rotateY(${angleY}deg) scale(1, 1) translate(-50%, -50%)`;
   }
@@ -168,6 +168,12 @@ methods: {
 .issus{
   margin-top: var(--margin2);
 }
+
+
+#lines2{
+    position: absolute;
+    width: 100vw;
+  }
 
 
 </style>

@@ -2,7 +2,7 @@
     <section>
         <div v-if="Object.keys(albumData).length !== 0">
             <div class="nav" :class="{ 'scrolled': isScrolled }">
-                <img src="/src/assets/icons/backChevron.svg" @click="goBack">
+                <img src="/src/assets/svg/backChevron.svg" @click="goBack">
                 <h2 id="title">{{ albumData.albums[0].name }}</h2>
             </div>
             <div class="display">  

@@ -71,7 +71,8 @@ export default {
         }
     }
     .albumItem:hover{
-        background-color: var(--color-gray);
+        background-color: var(--color-gray-opacity);
+        backdrop-filter: blur(var(--blur));
         transition: 0.2s;
     }
 

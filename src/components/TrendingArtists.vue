@@ -1,8 +1,9 @@
 <template>
+  <img id="lines1" src="/src/assets/svg/lines1.svg" alt="">
     <div class="trendingListeners">
       <div class="divImg3D">
-        <img id="glow1" src="/src/assets/icons/glow.svg" alt="">
-        <img id="headphones" src="/src/assets/images/headphones.png" alt="">
+        <img id="glow1" src="/src/assets/svg/glow.svg" alt="">
+        <img id="headphones" src="/src/assets/image/headphones.png" alt="">
       </div>
       <div class="list">
         <TrendingCards v-for="artist in filterdTrendingArtists"
@@ -12,8 +13,8 @@
         />
       </div>
       <div class="divImg3D">
-        <img id="glow2" src="/src/assets/icons/glow.svg" alt="">
-        <img id="musicNotes" src="/src/assets/images/music.png" alt="">
+        <img id="glow2" src="/src/assets/svg/glow.svg" alt="">
+        <img id="musicNotes" src="/src/assets/image/music.png" alt="">
       </div>
 
 
@@ -23,7 +24,7 @@
 
 <script>
 import TrendingCards from './TrendingCards.vue';
-import {getTrendingArtists} from '@/services/api/getTrendingArtists.js';
+import { getTrendingArtists } from '@/services/api/getTrendingArtists.js';
 
 export default {
   name: 'TrendingArtists',
@@ -33,41 +34,58 @@ export default {
       windowSize: 0,
     };
   },
-  created(){
+  created() {
     this.retrieveSetData();
-    this.updateScreenWidth(); 
+    this.updateScreenWidth();
+  },
+  mounted() {
+    document.body.addEventListener('mousemove', this.handleMouseMove);
+    window.addEventListener('resize', this.updateScreenWidth);
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.updateScreenWidth);
+    document.body.removeEventListener('mousemove', this.handleMouseMove);
   },
   methods: {
     async retrieveSetData() {
-      this.artistsData = await getTrendingArtists(); 
+      this.artistsData = await getTrendingArtists();
     },
     updateScreenWidth() {
-      this.windowSize = window.innerWidth; 
+      this.windowSize = window.innerWidth;
     },
+    handleMouseMove(event) {
+      const headphones = document.getElementById('headphones');
+      const musicNotes = document.getElementById('musicNotes');
+      const { clientX, clientY } = event;
+
+      const deltaX1 = clientX / window.innerWidth * 10; 
+      const deltaY1 = clientY / window.innerHeight * 10;
+
+      const deltaX2 = clientX / window.innerWidth * 5;
+      const deltaY2 = clientY / window.innerHeight * 5; 
+
+      headphones.style.transform = `translate(${deltaX1}px, ${deltaY1}px)`;
+      musicNotes.style.transform = `translate(${deltaY2}px, ${deltaX2}px)`;
+    }
   },
   computed: {
     filterdTrendingArtists() {
       if (this.windowSize >= 970) {
         const data = this.artistsData.slice();
-        if (data.length >= 2) { 
-          const firstArtist = data.shift(); 
+        if (data.length >= 2) {
+          const firstArtist = data.shift();
           data.splice(1, 0, firstArtist);
         }
-        return data.slice(0, 3); 
+        return data.slice(0, 3);
       } else {
         return this.artistsData.slice(0, 3);
       }
     },
   },
-  mounted() {
-    window.addEventListener('resize', this.updateScreenWidth)
-  },
-  beforeDestroy() {
-    window.removeEventListener('resize', this.updateScreenWidth);
-  },
-  components: {TrendingCards}
+  components: { TrendingCards },
 }
 </script>
+
 
 <style scoped lang="scss">
 
@@ -124,6 +142,12 @@ export default {
       }
   }
 
+  #lines1{
+    position: absolute;
+    width: 100vw;
+    left: 0;
+    top: 150px;
+  }
 
   @media screen and (min-width: 600px) {
     .divImg3D{
@@ -148,6 +172,7 @@ export default {
   @media screen and (min-width: 970px) {
     .trendingListeners .list {
     flex-direction: row;
+    align-items: stretch;
     }
     .divImg3D{
       #glow1{

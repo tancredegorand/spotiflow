@@ -11,9 +11,9 @@
             v-for="track in filteredTracks"
             :name="track.data.name" 
             :artist="track.data.artists.items[0].profile.name"
-            :album="track.data.artists.items[0].profile.name"
             :img_url="getTrackCover(track.data.albumOfTrack.name)"
             :duration="track.data.duration.totalMilliseconds"
+            @click="launchPlayer(track, getTrackCover(track.data.albumOfTrack.name))"
         />
 
     </div>
@@ -31,6 +31,7 @@ export default {
     props: {
         data: Object
     },
+    emits: ["update:playerSongData", "update:playerImgUrl"],
     data() {
         return {
             trackSortType: "", 
@@ -58,7 +59,7 @@ export default {
             if (albumItem) {
                 return albumItem.data.coverArt.sources[0].url;
             } else {
-                return "./src/assets/images/unknowCover.webp"; 
+                return "./src/assets/image/unknowCover.webp"; 
             }
         }, 
         setArtists(){
@@ -73,6 +74,10 @@ export default {
         },
         updateSelectedArtist(value) {
             this.selectedArtist = value;
+        },
+        launchPlayer(data, imgUrl){
+            this.$emit('update:playerSongData', data);
+            this.$emit('update:playerImgUrl', imgUrl);
         },
     },
     computed: {

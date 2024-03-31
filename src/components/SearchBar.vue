@@ -1,11 +1,11 @@
 <template>
   <div class="search">
-    <img class="searchIcon" src="/src/assets/icons/search.svg">
+    <img class="searchIcon" src="/src/assets/svg/search.svg">
     <input class="searchBar" type="text" placeholder="Artist, Album..." @keyup.enter="enterSearch" v-model="searchInput" />
     <img 
       class="xmarkIcon" 
       :class="{ 'xmarkIconShow': searchInput !== '' }"
-      src="/src/assets/icons/xmark.svg"
+      src="/src/assets/svg/xmark.svg"
       @click="resetSeachInput"
     >
 

@@ -20,9 +20,9 @@
             v-for="track in filterdTracks"
             :name="track.data.name" 
             :artist="track.data.artists.items[0].profile.name"
-            :album="track.data.artists.items[0].profile.name"
             :img_url="getTrackCover(track.data.albumOfTrack.name)"
             :duration="track.data.duration.totalMilliseconds"
+            @click="launchPlayer(track, getTrackCover(track.data.albumOfTrack.name))"
         />
         <button class="actionBtn" @click="showView('tracks')">See More</button>
     </section>
@@ -43,7 +43,7 @@ export default {
     props: {
         data: Object
     },
-    emits: ["update:switchValue"],
+    emits: ["update:switchValue", "update:playerSongData", "update:playerImgUrl"],
     data() {
         return {
             albumSortType: "relevance", 
@@ -69,12 +69,16 @@ export default {
             if (albumItem) {
                 return albumItem.data.coverArt.sources[0].url;
             } else {
-                return "./src/assets/images/unknowCover.webp"; 
+                return "./src/assets/image/unknowCover.webp"; 
             }
         }, 
         showView(value){
             this.$emit('update:switchValue', value);
-        }
+        },
+        launchPlayer(data, imgUrl){
+            this.$emit('update:playerSongData', data);
+            this.$emit('update:playerImgUrl', imgUrl);
+        },
     },
     computed: {
         filterdAlbums(){
@@ -100,6 +104,13 @@ export default {
         flex-wrap: wrap;
         gap: 15px;
         margin-bottom: 5px;
+
+    }
+
+    @media screen and (min-width: 600px) {
+        .actionBtn{
+            width: 250px;
+        }
 
     }
 

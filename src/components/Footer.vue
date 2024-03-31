@@ -9,7 +9,7 @@
       <a href="https://github.com/tancredegorand/spotiflow" target="_blank"><p>GitHub</p></a>
     </div>
     <div class="imac">
-      <a href="https://www.ingenieur-imac.fr/" target="_blank"><p>IMAC</p><img src="/src/assets/images/logoIMAC.png" alt=""></a>
+      <a href="https://www.ingenieur-imac.fr/" target="_blank"><p>IMAC</p><img src="/src/assets/image/logoIMAC.png" alt=""></a>
     </div>
 
 
@@ -26,7 +26,6 @@ export default {
 <style scoped lang="scss">
 
   .footer{
-    margin-top: var(--margin2);
     padding: 40px;
     background-color: var(--color-gray);
     width: 100vw;

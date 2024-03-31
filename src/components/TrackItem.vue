@@ -18,7 +18,6 @@ export default {
         name : String, 
         artist: String,  
         img_url: String, 
-        album: String,
         duration: Number,
 
     },
@@ -70,7 +69,8 @@ export default {
     
 
     .trackItem:hover{
-        background-color: var(--color-gray);
+        background-color: var(--color-gray-opacity);
+        backdrop-filter: blur(var(--blur));
         transition: 0.2s;
     }
 

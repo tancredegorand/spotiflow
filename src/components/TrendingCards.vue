@@ -33,7 +33,8 @@ export default {
 .card{
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center; 
+  justify-content: center;
   background-color: var(--color-black-opacity);
   backdrop-filter: blur(var(--blur));
   border-radius: var(--border-radius); 
@@ -48,7 +49,7 @@ export default {
     padding-left: 5px;
     padding-right: 5px;
     margin-bottom: 20px;
-    P{
+    p{
       color: var(--color-black);
       font-family: "Jomhuria";
       font-size: 2rem;
@@ -73,6 +74,10 @@ export default {
     line-height: 0.7;
     text-align: center;
     font-size: var(--font-title-size);
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
   }
 }
 

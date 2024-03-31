@@ -58,6 +58,7 @@ export default {
 
   .display{
     min-height: 90vh;
+    padding-bottom: var(--margin);
 
     .hook{
       margin-top: var(--margin2); 
@@ -82,6 +83,8 @@ export default {
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
+    padding-right: var(--margin1);
+    padding-left: var(--margin1);
 
   }
 
@@ -113,8 +116,6 @@ export default {
       max-width: 1000px;
       margin-right: auto;
       margin-left: auto;
-      padding-right: var(--margin);
-      padding-left: var(--margin);
     }
 
 
@@ -126,6 +127,9 @@ export default {
     @media screen and (min-width: 970px) {
       .intro p {
         max-width: 550px;
+      }
+      .searchDiv{
+        padding: 0;
       }
       
     }

@@ -3,12 +3,17 @@
         <AlbumsGallery :data="data" />
     </div>
     <div v-if="switchValue === 'tracks'">
-        <TracksGallery :data="data"/>
+        <TracksGallery 
+        :data="data"
+        @update:playerSongData="handlePlayerSongDataUpdate"
+        @update:playerImgUrl="handlePlayerImgUrlUpdate"
+        />
     </div>
     <div v-if="switchValue === 'top-results'">
         <TopResultsGallery 
         :data="data"
         @update:switchValue="handleSwitchValueUpdate"
+        @update:playerSongData="handlePlayerSongDataUpdate"
         />
     </div>
 </template>
@@ -29,6 +34,12 @@ export default {
     methods: {
         handleSwitchValueUpdate(value){
             this.$emit('update:switchValue', value);
+        },
+        handlePlayerSongDataUpdate(value){
+            this.$emit('update:playerSongData', value);
+        },
+        handlePlayerImgUrlUpdate(value){
+            this.$emit('update:playerImgUrl', value);
         }
     },
     components: { AlbumsGallery, TracksGallery, TopResultsGallery }

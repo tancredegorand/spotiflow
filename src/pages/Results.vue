@@ -1,12 +1,13 @@
 <template>
     <div class="display">
         <Header/>
-        <div>  
+        <section>  
             <div class="searchResult">
                 <SearchBar class="searchBarResult"
                     :searchValue="searchValue"
                 />
                 <router-link class="canelBtn" :to="{ path: '/' }">Cancel</router-link>
+                <span class="glowSearch"></span>
             </div>
             
             <div v-if="Object.keys(data).length !== 0"> 
@@ -18,12 +19,20 @@
                     :switchValue="switchValueData"
                     :data="data"
                     @update:switchValue="handleSwitchValueUpdate"
+                    @update:playerSongData="handlePlayerSongDataUpdate"
+                    @update:playerImgUrl="handlePlayerImgUrlUpdate"
                 />
             </div>
             <div v-else>
                 <Loading/>
             </div>
-        </div>
+        </section>
+        <Player
+            :playerSongData="playerSongData"
+            :albumsData="data.albums"
+            :playerImgUrl="playerImgUrl"
+
+        />
     </div>
     <Footer/>
 </template>
@@ -35,6 +44,7 @@ import ResultsGallery from "@/components/ResultsGallery.vue";
 import Header from "@/components/Header.vue";
 import Loading from "@/components/Loading.vue";
 import Footer from "@/components/Footer.vue";
+import Player from "@/components/Player.vue"
 import { getSearch } from "@/services/api/getSearch.js";
 
 export default {
@@ -42,7 +52,9 @@ export default {
     data() {
         return {
             data: {},
-            switchValueData: "", 
+            switchValueData: "",
+            playerSongData: {}, 
+            playerImgUrl: "",
         }; 
     },
     created() {
@@ -74,24 +86,46 @@ export default {
         handleSwitchValueUpdate(value) {
             this.switchValueData = value;
         },
+        handlePlayerSongDataUpdate(value){
+            this.playerSongData = value; 
+        },
+        handlePlayerImgUrlUpdate(value){
+            this.playerImgUrl = value; 
+        }
+        
     },
     computed: {
         searchValue() {
             return this.$route.query.search_query; 
         }
     },
-    components: { SearchBar, Switch, ResultsGallery, Header, Loading, Footer}
+    components: { SearchBar, Switch, ResultsGallery, Header, Loading, Footer, Player}
 }
 </script>
 
 <style scoped lang="scss">
     .display{
         min-height: 80vh;
+        background-image: url(/src/assets/svg/lines1.svg);
+        background-repeat: none;
+        background-position: top;
 
-        .searchResult{
-            display: flex;
-            align-items: center;
-            max-width: 515px;
+
+        section{
+            padding: var(--margin);
+            .searchResult{
+                display: flex;
+                align-items: center;
+                max-width: 515px;
+
+                .glowSearch{
+                    position: absolute;
+                    background-color: var(--color-orange);
+                    width: 300px;
+                    height: 10px;
+                    filter: blur(40px);
+                }
+
             .searchBarResult{
                 flex-grow: 1; 
                 display: flex;
@@ -104,7 +138,19 @@ export default {
 
         }
 
+        }
+
+      
+
     }
+
+    @media screen and (min-width: 550px) {
+        .glowSearch {
+            width: 400px!important;
+        }
+
+    }
+
 
 
 </style>
