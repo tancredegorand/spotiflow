@@ -1,9 +1,9 @@
 <template>
     <div class="trendingListeners">
-      <!-- <div class="divImg3D">
-        <img class="glow" src="/src/assets/icons/glow.svg" alt="">
+      <div class="divImg3D">
+        <img id="glow1" src="/src/assets/icons/glow.svg" alt="">
         <img id="headphones" src="/src/assets/images/headphones.png" alt="">
-      </div> -->
+      </div>
       <div class="list">
         <TrendingCards v-for="artist in filterdTrendingArtists"
           :name="artist.artist"
@@ -11,10 +11,10 @@
           :rank="artist.rank"
         />
       </div>
-      <!-- <div class="divImg3D">
-        <img class="glow" src="/src/assets/icons/glow.svg" alt="">
+      <div class="divImg3D">
+        <img id="glow2" src="/src/assets/icons/glow.svg" alt="">
         <img id="musicNotes" src="/src/assets/images/music.png" alt="">
-      </div> -->
+      </div>
 
 
       
@@ -30,27 +30,40 @@ export default {
   data() {
     return {
       artistsData: [],
+      windowSize: 0,
     };
   },
   created(){
     this.retrieveSetData();
+    this.updateScreenWidth(); 
   },
   methods: {
     async retrieveSetData() {
       this.artistsData = await getTrendingArtists(); 
     },
+    updateScreenWidth() {
+      this.windowSize = window.innerWidth; 
+    },
   },
   computed: {
     filterdTrendingArtists() {
-      const data = this.artistsData.slice();
-      if (data.length >= 2) { 
-        const firstArtist = data.shift(); 
-        data.splice(1, 0, firstArtist);
+      if (this.windowSize >= 970) {
+        const data = this.artistsData.slice();
+        if (data.length >= 2) { 
+          const firstArtist = data.shift(); 
+          data.splice(1, 0, firstArtist);
+        }
+        return data.slice(0, 3); 
+      } else {
+        return this.artistsData.slice(0, 3);
       }
-      return data.slice(0, 3); 
-    }
-
-
+    },
+  },
+  mounted() {
+    window.addEventListener('resize', this.updateScreenWidth)
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.updateScreenWidth);
   },
   components: {TrendingCards}
 }
@@ -59,8 +72,9 @@ export default {
 <style scoped lang="scss">
 
 .trendingListeners{
-  display: flex;
+  position: relative;
   flex-direction: column;
+  display: flex;
   align-items: center;
   margin-top: var(--margin2);
     .list{
@@ -71,6 +85,7 @@ export default {
       align-items: center;
       justify-content: space-between;
       flex-direction: column;
+      z-index: 2;
     }
 
   }
@@ -78,25 +93,83 @@ export default {
 
 
   .divImg3D{
-    background-color: red;
-    position: relative;
-      .glow{
+      #glow1{
         position: absolute;
-        //filter: blur(150px);
+        top: -160px;
+        left: -200px;
+        filter: blur(150px);
+        width: 300px;
+        z-index: 1;
+      }
+      #headphones{
+        z-index: 3;
+        position: absolute;
+        width: 250px;
+        top: -160px;
+        left: -15vw;
+      }
+      #glow2{
+        z-index: 1;
+        position: absolute;
+        width: 300px;
+        bottom: -150px;
+        filter: blur(150px);
+      }
+      #musicNotes{
+        z-index: 3;
+        position: absolute;
+        width: 250px;
+        bottom: -150px;
+        right: -110px;
+      }
+  }
+
+
+  @media screen and (min-width: 600px) {
+    .divImg3D{
+      #glow1{
+        left: -5vw;
         width: 300px;
       }
       #headphones{
-        width: 350px;
+        left: -2vw;
+        
+      }
+      #glow2{
+        right: -2vw;
       }
       #musicNotes{
-
+        width: 250px;
+        right: -2vw;
       }
+    }
   }
 
   @media screen and (min-width: 970px) {
     .trendingListeners .list {
     flex-direction: row;
+    }
+    .divImg3D{
+      #glow1{
+        left: -125px;
+        width: 300px;
+      }
+      #headphones{
+        left: -125px;
+        top:-380px;
+        width: 400px;
+      }
+      #glow2{
+        top:-100px;
+        right: -150px;
+      }
+      #musicNotes{
+        width: 400px;
+        top:-250px;
+        right: -150px;
+      }
+    }
   }
-  }
+
 
 </style>

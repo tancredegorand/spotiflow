@@ -86,7 +86,6 @@ export default {
 
 <style scoped lang="scss">
     .display{
-        margin: 15px;
         min-height: 80vh;
 
         .searchResult{

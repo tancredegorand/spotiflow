@@ -79,6 +79,9 @@ export default {
 
   .searchDiv{
     margin-bottom: var(--margin2);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
 
   }
 
@@ -86,7 +89,12 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
+    max-width: 500px;
+    margin-right: auto;
+    margin-left: auto;
     p{
+      z-index: 2;
       color: var(--color-p);
       text-align: center;
       width: 60vw;

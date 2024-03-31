@@ -29,12 +29,13 @@ export default {
 </script>
 
 <style scoped lang="scss">
+
 .card{
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: var(--color-black-opacity);
-  backdrop-filter: blur(--blur);
+  backdrop-filter: blur(var(--blur));
   border-radius: var(--border-radius); 
   border: 1px solid var(--color-white);
   padding: var(--margin1);

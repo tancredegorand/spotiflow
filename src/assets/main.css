@@ -17,7 +17,7 @@
     --font-title: 'Jomhuria', sans-serif;
     --font-main: 'Inter-Regular',  sans-serif;
     --font-title-size: 4rem; 
-    --font-title-size2: 3Rem; 
+    --font-title-size2: 3rem; 
     --font-main-size: 1rem; 
 
     --color-white: #E6E6E6; 
@@ -53,6 +53,9 @@
 body{
     background-color: var(--color-black);
     color: var(--color-white);
+}
+#app{
+    overflow-x: hidden;
 }
 
 html {
@@ -99,6 +102,8 @@ button{
     line-height: 0.5;
     padding-top: 5px;
     transition: 0.2s; 
+    padding-left: var(--margin);
+    padding-right: var(--margin);
     
 }
 .actionBtn:hover{

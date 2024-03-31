@@ -44,6 +44,7 @@ export default {
 
 <style scoped lang="scss">
   .search{
+    z-index: 4;
     height: 50px;
     background-color: var(--color-black-opacity);
     backdrop-filter: blur(var(--blur)); 
@@ -52,16 +53,19 @@ export default {
     border: 1px solid var(--color-white);
 
     .searchIcon{
+      z-index: 4;
       width: 20px;
       margin-right: 10px;
       margin-left: 10px;
     }
     .xmarkIcon{
+      z-index: 4;
       transition: 0.2s;
       width: 15px;
       opacity: 0;
       margin-right: 10px;
       margin-left: 10px;
+      cursor: pointer;
     }
     .xmarkIconShow{
       opacity: 1;
