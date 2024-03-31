@@ -97,7 +97,7 @@ export default {
       z-index: 2;
       color: var(--color-p);
       text-align: center;
-      width: 60vw;
+      max-width:60vw;
 
       a{
         color: var(--color-p);
@@ -120,6 +120,14 @@ export default {
 
   h1{
       margin-bottom: 30px;
+    }
+
+
+    @media screen and (min-width: 970px) {
+      .intro p {
+        max-width: 550px;
+      }
+      
     }
 
 </style>

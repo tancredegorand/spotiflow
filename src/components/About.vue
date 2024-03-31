@@ -31,6 +31,32 @@
 <script>
 export default {
   name: 'About',
+  mounted() {
+  const vueIcon = document.getElementById("vueIcon");
+  
+  vueIcon.addEventListener("mousemove", this.handleMouseMove);
+
+  vueIcon.addEventListener("mouseleave", () => {
+    vueIcon.style.transform = 'rotateX(0deg) rotateY(0deg) scale(1, 1) translate(-50%, -50%)';
+  });
+},
+methods: {
+  handleMouseMove(event) {
+    const { clientX, clientY } = event;
+    const rect = vueIcon.getBoundingClientRect();
+
+    const x = clientX - rect.left;
+    const y = clientY - rect.top;
+
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+
+    const angleX = -(y - centerY) / 5;
+    const angleY = (x - centerX) / 5;
+
+    vueIcon.style.transform = `rotateX(${angleX}deg) rotateY(${angleY}deg) scale(1, 1) translate(-50%, -50%)`;
+  }
+}
 
 }
 </script>
@@ -76,8 +102,10 @@ export default {
       position: absolute; 
       top: 50%; 
       left: 50%;
+      transform-origin: center;
       transform: translate(-50%, -50%); 
       width: 200px;
+      transition: all 0.15s ease-out;
 
     }
 
