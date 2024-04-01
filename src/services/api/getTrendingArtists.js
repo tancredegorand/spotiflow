@@ -26,7 +26,7 @@ function getTrendingArtistsFromJSON(){
 
 
 export async function getTrendingArtists() {
-    //const url = `https://spotify81.p.rapidapi.com/top_20_by_monthly_listeners`;
+    const url = `https://spotify81.p.rapidapi.com/top_20_by_monthly_listeners`;
     const options = {
      method: 'GET',
      headers: {
