@@ -58,7 +58,7 @@ export default {
 
   .display{
     min-height: 90vh;
-    padding-bottom: var(--margin);
+    padding-bottom: var(--margin2);
 
     .hook{
       margin-top: var(--margin2); 
