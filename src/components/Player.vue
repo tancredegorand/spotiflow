@@ -1,19 +1,24 @@
 <template>
-    <div v-if="Object.keys(data).length !== 0" class="player">
-      <div class="playerInfo">  
+    <div class="player">
+      <div v-if="Object.keys(data).length !== 0" class="playerInfo">  
         <img :src="playerImgUrl" alt="">
         <p class="title">{{ playerSongData.data.name }}</p>
         <div class="playerControls">
-            <img src="/src/assets/svg/pause.svg" alt="" id="controlIcon" class="pause">
+            <img @click="playPause" src="/src/assets/svg/pause.svg" alt="" id="controlIcon" class="pause" >
             <img src="/src/assets/svg/xmark.svg" alt="">
         </div>
       </div>
-      <audio controls :src="audioUrl" type="audio/mpeg" id="song"></audio>
-      <input type="range" value="0" id="audioProgress">
+      <div v-else class="playerInfo">  
+        <img src="/src/assets/image/unknowCover.webp" alt="" id="loadingImg">
+        <p class="title">Loading..</p>
+        <div class="playerControls">
+            <img src="/src/assets/svg/play.svg" alt="" id="controlIcon" class="play" >
+            <img src="/src/assets/svg/xmark.svg" alt="">
+        </div>
+      </div>
+      <audio autoplay :src="audioUrl" type="audio/mpeg" id="song"></audio>
+      <!-- <input type="range" value="0" id="audioProgress"> -->
   
-    </div>
-    <div v-else>
-      Chargement en cours...
     </div>
 </template>
 
@@ -37,6 +42,7 @@ export default {
     playerSongData(newValue) {
       if (newValue && newValue !== '') {
         this.data = [];
+        this.audioUrl = ""; 
         this.retrieveSetData();
         console.log(this.playerImgUrl);
       }
@@ -54,6 +60,24 @@ export default {
       info = info.replace(/\s+/g, '+');
       return info; 
     },
+    playPause(){
+      let icon = document.getElementById("controlIcon"); 
+      let song = document.getElementById("song");
+      if(icon.classList.contains("pause")){
+        icon.classList.remove("pause"); 
+        icon.classList.add("play"); 
+        icon.src = "/src/assets/svg/play.svg"; 
+        song.pause();
+
+      }else{
+        icon.classList.remove("play"); 
+        icon.classList.add("pause"); 
+        icon.src = "/src/assets/svg/pause.svg"; 
+        song.play(); 
+
+      }
+
+    }
   }
 
 }
@@ -95,43 +119,59 @@ export default {
 
 
     .playerControls{
+      width: 60px;
       display: flex;
       align-items: center;
       justify-content: space-around;
 
     img:first-child{
-      height: 40px;
+      height: 20px;
+      cursor: pointer;
     }
     img:last-child{
-      height: 40px;
+      height: 20px;
+      cursor: pointer;
       margin: 0;
     }
 }
 
 
   }
-  #audioProgress{
-      -webkit-appearance: none;
-      width: 100%;
-      cursor: pointer;
-      border-radius: var(--border-radius);
-      background-color: var(--color-white);
-      height: 5px;
-  }
-  #audioProgress::-webkit-progress-bar{
-  background-color: var(--color-white);
-  border-radius: 5px;
+  // #audioProgress{
+  //     -webkit-appearance: none;
+  //     width: 100%;
+  //     cursor: pointer;
+  //     border-radius: var(--border-radius);
+  //     background-color: var(--color-white);
+  //     height: 5px;
+  // }
+  // #audioProgress::-webkit-progress-bar{
+  // background-color: var(--color-white);
+  // border-radius: 5px;
 
-  }
-  #audioProgress::-webkit-slider-thumb{
-    -webkit-appearance: none;
-    background-color: var(--color-orange);
-    width: 30px;
-    height: 15px;
-    border-radius: var(--border-radius);
-    box-shadow: 0px 0px 4px var(--color-orange);
-  }
+  // }
+  // #audioProgress::-webkit-slider-thumb{
+  //   -webkit-appearance: none;
+  //   background-color: var(--color-orange);
+  //   width: 30px;
+  //   height: 15px;
+  //   border-radius: var(--border-radius);
+  //   box-shadow: 0px 0px 4px var(--color-orange);
+  // }
 
+}
+
+#loadingImg{
+  animation: loadingImg 1s infinite alternate;
+}
+
+@keyframes loadingImg {
+  from {
+    opacity: 0.5;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 </style>

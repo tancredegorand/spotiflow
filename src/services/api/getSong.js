@@ -26,7 +26,7 @@ function getSongFromJSON(){
 
 
 export async function getSong(value) {
-  //const url = `https://spotify81.p.rapidapi.com/download_track?q=${value}&onlyLinks=1`;
+  const url = `https://spotify81.p.rapidapi.com/download_track?q=${value}&onlyLinks=1`;
   const options = {
     method: 'GET',
     headers: {
