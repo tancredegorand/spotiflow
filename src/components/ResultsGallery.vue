@@ -14,6 +14,7 @@
         :data="data"
         @update:switchValue="handleSwitchValueUpdate"
         @update:playerSongData="handlePlayerSongDataUpdate"
+        @update:playerImgUrl="handlePlayerImgUrlUpdate"
         />
     </div>
 </template>

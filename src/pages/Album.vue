@@ -16,8 +16,14 @@
                     :tracks="albumData.albums[0].tracks"
                     :label="albumData.albums[0].label"
                     :copyright="albumData.albums[0].copyrights[0].text"
+                    @update:playerSongData="handlePlayerSongDataUpdate"
                 />
             </div>
+            <Player
+            :playerSongData="playerSongData"
+            :playerImgUrl="albumData.albums[0].images[0].url"
+
+            />
           
         </div>
 
@@ -32,6 +38,7 @@
 </template>
 
 <script>
+import Player from "@/components/Player.vue";
 import AlbumDisplay from "@/components/AlbumDisplay.vue";
 import Loading from "@/components/Loading.vue";
 import Footer from "@/components/Footer.vue";
@@ -44,6 +51,8 @@ export default {
       albumData: {},
       albumID: "",
       isScrolled: false,
+
+      playerSongData: {},
     };
   },
   created() {
@@ -70,8 +79,11 @@ export default {
     handleScroll() {
       this.isScrolled = window.scrollY > 400;
     },
+    handlePlayerSongDataUpdate(value){
+      this.playerSongData = value; 
+    },
   },
-  components: { AlbumDisplay, Loading, Footer }
+  components: { AlbumDisplay, Loading, Footer, Player }
 }
 </script>
 

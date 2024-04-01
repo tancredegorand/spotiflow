@@ -29,7 +29,6 @@
         </section>
         <Player
             :playerSongData="playerSongData"
-            :albumsData="data.albums"
             :playerImgUrl="playerImgUrl"
 
         />

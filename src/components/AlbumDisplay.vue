@@ -19,6 +19,7 @@
                     :track_number="track.track_number"
                     :track_name="track.name"
                     :duration="track.duration_ms"
+                    @click="launchPlayer(track)"
                 />
             </tbody>
         </table>
@@ -47,6 +48,7 @@ export default {
         copyright: String,
         
     },
+    emits: ["update:playerSongData"],
     computed: {
         formattedRealseDate() {
             if (!this.realse_date) return '';
@@ -58,7 +60,13 @@ export default {
 
             return `${day}/${month}/${year}`;
         }
-    }, 
+    },
+    methods: {
+        launchPlayer(data){
+            this.$emit('update:playerSongData', data);
+            console.log(data); 
+        },
+    },
     components: { TrackDisplayInAlbum  }
 
 }

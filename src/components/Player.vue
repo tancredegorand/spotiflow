@@ -1,11 +1,11 @@
 <template>
-    <div class="player">
+    <div v-if="(display==true)" class="player">
       <div v-if="Object.keys(data).length !== 0" class="playerInfo">  
         <img :src="playerImgUrl" alt="">
-        <p class="title">{{ playerSongData.data.name }}</p>
+        <p class="title">{{ songName }}</p>
         <div class="playerControls">
             <img @click="playPause" src="/src/assets/svg/pause.svg" alt="" id="controlIcon" class="pause" >
-            <img src="/src/assets/svg/xmark.svg" alt="">
+            <img @click="close" src="/src/assets/svg/xmark.svg" alt="">
         </div>
       </div>
       <div v-else class="playerInfo">  
@@ -13,7 +13,7 @@
         <p class="title">Loading..</p>
         <div class="playerControls">
             <img src="/src/assets/svg/play.svg" alt="" id="controlIcon" class="play" >
-            <img src="/src/assets/svg/xmark.svg" alt="">
+            <img @click="close" src="/src/assets/svg/xmark.svg" alt="">
         </div>
       </div>
       <audio autoplay :src="audioUrl" type="audio/mpeg" id="song"></audio>
@@ -30,25 +30,24 @@ export default {
   props:{
     playerSongData: Object,
     playerImgUrl: String,
-    albumsData: Object,
   }, 
   data() {
     return {
       data: [],
       audioUrl: "", 
+      display: false,
+      songName: "",
     }
   },
   watch: {
     playerSongData(newValue) {
       if (newValue && newValue !== '') {
+        this.display = true;
         this.data = [];
         this.audioUrl = ""; 
         this.retrieveSetData();
-        console.log(this.playerImgUrl);
       }
     }
-  },
-  mounted() {
   },
   methods: {
     async retrieveSetData() {
@@ -56,9 +55,18 @@ export default {
       this.audioUrl = this.data[0].url; 
     },
     playerInfo(track){
-      let info = track.data.name+'+'+track.data.artists.items[0].profile.name; 
-      info = info.replace(/\s+/g, '+');
-      return info; 
+      try{
+        let info = track.data.name+'+'+track.data.artists.items[0].profile.name; 
+        this.songName = track.data.name;
+        info = info.replace(/\s+/g, '+');
+        return info; 
+      }catch{//albumDisplay
+        console.log(track);
+        let info = track.name+'+'+track.artists[0].name; 
+        this.songName = track.artists[0].name;
+        info = info.replace(/\s+/g, '+');
+        return info; 
+      }
     },
     playPause(){
       let icon = document.getElementById("controlIcon"); 
@@ -76,7 +84,11 @@ export default {
         song.play(); 
 
       }
-
+    }, 
+    close(){
+      this.display = false;
+      this.data = [];
+      this.audioUrl = ""; 
     }
   }
 
