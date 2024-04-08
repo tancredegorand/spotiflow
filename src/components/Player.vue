@@ -63,7 +63,7 @@ export default {
       }catch{//albumDisplay
         console.log(track);
         let info = track.name+'+'+track.artists[0].name; 
-        this.songName = track.artists[0].name;
+        this.songName = track.name;
         info = info.replace(/\s+/g, '+');
         return info; 
       }

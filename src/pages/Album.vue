@@ -90,6 +90,7 @@ export default {
 <style scoped lang="scss">
 .display {
   padding: 15px;
+  min-height: 87vh;
 }
 
 .nav {

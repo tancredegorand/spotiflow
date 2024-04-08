@@ -104,7 +104,7 @@ export default {
 
 <style scoped lang="scss">
     .display{
-        min-height: 80vh;
+        min-height: 87vh;
         background-image: url(/src/assets/svg/lines1.svg);
         background-repeat: none;
         background-position: top;

@@ -27,10 +27,11 @@ function getSongFromJSON(){
 
 export async function getSong(value) {
   const url = `https://spotify81.p.rapidapi.com/download_track?q=${value}&onlyLinks=1`;
+  const KEY =  import.meta.env.VITE_API_KEY;
   const options = {
     method: 'GET',
     headers: {
-        'X-RapidAPI-Key': '7159b1cb07msh84bf3f4f471da1ep10f14ajsn9a6231f24a8a',
+        'X-RapidAPI-Key': KEY,
         'X-RapidAPI-Host': 'spotify81.p.rapidapi.com'
     }
    };
