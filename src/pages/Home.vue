@@ -33,7 +33,6 @@
 <script>
 import SearchBar from "@/components/SearchBar.vue"; 
 import Header from "@/components/Header.vue";
-import Loading from "@/components/Loading.vue";
 import Footer from "@/components/Footer.vue";
 import TrendingArtists from "@/components/TrendingArtists.vue"
 import About from "@/components/About.vue"
@@ -48,13 +47,12 @@ export default {
     methods: {
 
     }, 
-    components: {SearchBar, Header, Loading, Footer, TrendingArtists, About}
+    components: {SearchBar, Header, Footer, TrendingArtists, About}
 }
 </script>
 
 
 <style scoped lang="scss">
-
 
   .display{
     min-height: 90vh;

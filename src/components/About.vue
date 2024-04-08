@@ -16,7 +16,7 @@
       <div class="links">
         <a href="https://www.linkedin.com/in/tancredegorand/" class="link" target="_blank"><img src="/src/assets/svg/linkedin.svg" alt="linkedin"></a>
         <a href="https://tancredegorand.com/" class="link" target="_blank"><img src="/src/assets/svg/web.svg" alt="tancredegorand.com"></a>
-        <a href="https://linktr.ee/tancredegorand" class="link" target="_blank"><img src="/src/assets/svg/links.svg" alt="links"></a>
+        <a href="https://bento.me/tancredegorand" class="link" target="_blank"><img src="/src/assets/svg/links.svg" alt="links"></a>
       </div>
       <a href="https://www.tancredegorand.com/#contact" target="_blank"><button class="actionBtn">Let's collaborate</button></a>
     </div>

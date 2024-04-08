@@ -5,12 +5,15 @@
         <img id="glow1" src="/src/assets/svg/glow.svg" alt="">
         <img id="headphones" src="/src/assets/image/headphones.png" alt="">
       </div>
-      <div class="list">
+      <div class="list" v-if="Object.keys(artistsData).length !== 0">
         <TrendingCards v-for="artist in filterdTrendingArtists"
           :name="artist.artist"
           :listeners="artist.monthlyListeners"
           :rank="artist.rank"
         />
+      </div>
+      <div v-else>
+        <Loading/>
       </div>
       <div class="divImg3D">
         <img id="glow2" src="/src/assets/svg/glow.svg" alt="">
@@ -24,6 +27,7 @@
 
 <script>
 import TrendingCards from './TrendingCards.vue';
+import Loading from './Loading.vue';
 import { getTrendingArtists } from '@/services/api/getTrendingArtists.js';
 
 export default {
@@ -82,7 +86,7 @@ export default {
       }
     },
   },
-  components: { TrendingCards },
+  components: { TrendingCards, Loading },
 }
 </script>
 
