@@ -69,7 +69,7 @@ export default {
             if (albumItem) {
                 return albumItem.data.coverArt.sources[0].url;
             } else {
-                return "./src/assets/image/unknowCover.webp"; 
+                return "/src/assets/image/unknowCover.webp"; 
             }
         }, 
         showView(value){
