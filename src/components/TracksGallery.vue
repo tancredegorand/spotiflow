@@ -25,6 +25,7 @@
 <script>
 import TracksGalleryOptions from '@/components/TracksGalleryOptions.vue';
 import TrackItem from '@/components/TrackItem.vue';
+import imageUnknow from "/src/assets/image/unknowCover.webp"; 
 
 export default {
     name: 'TracksGallery',
@@ -59,7 +60,7 @@ export default {
             if (albumItem) {
                 return albumItem.data.coverArt.sources[0].url;
             } else {
-                return "/src/assets/image/unknowCover.webp"; 
+                return imageUnknow; 
             }
         }, 
         setArtists(){

@@ -37,6 +37,7 @@
 <script>
 import AlbumItem from '@/components/AlbumItem.vue';
 import TrackItem from '@/components/TrackItem.vue';
+import imageUnknow from "/src/assets/image/unknowCover.webp"
 
 export default {
     name: 'AlbumsGallery',
@@ -69,7 +70,7 @@ export default {
             if (albumItem) {
                 return albumItem.data.coverArt.sources[0].url;
             } else {
-                return "/src/assets/image/unknowCover.webp"; 
+                return imageUnknow; 
             }
         }, 
         showView(value){

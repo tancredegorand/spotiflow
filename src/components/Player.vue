@@ -24,6 +24,9 @@
 
 <script>
 import { getSong } from "@/services/api/getSong.js"
+import imagePlay from "/src/assets/svg/play.svg"
+import imagePause from "/src/assets/svg/pause.svg"
+
 
 export default {
   name: 'Player',
@@ -74,13 +77,13 @@ export default {
       if(icon.classList.contains("pause")){
         icon.classList.remove("pause"); 
         icon.classList.add("play"); 
-        icon.src = "/src/assets/svg/play.svg"; 
+        icon.src = imagePlay; 
         song.pause();
 
       }else{
         icon.classList.remove("play"); 
         icon.classList.add("pause"); 
-        icon.src = "/src/assets/svg/pause.svg"; 
+        icon.src = imagePause; 
         song.play(); 
 
       }
@@ -130,47 +133,23 @@ export default {
     }
 
 
-    .playerControls{
-      width: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: space-around;
+      .playerControls{
+        width: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
 
-    img:first-child{
-      height: 20px;
-      cursor: pointer;
+      img:first-child{
+        height: 20px;
+        cursor: pointer;
+      }
+      img:last-child{
+        height: 20px;
+        cursor: pointer;
+        margin: 0;
+      }
     }
-    img:last-child{
-      height: 20px;
-      cursor: pointer;
-      margin: 0;
-    }
-}
-
-
   }
-  // #audioProgress{
-  //     -webkit-appearance: none;
-  //     width: 100%;
-  //     cursor: pointer;
-  //     border-radius: var(--border-radius);
-  //     background-color: var(--color-white);
-  //     height: 5px;
-  // }
-  // #audioProgress::-webkit-progress-bar{
-  // background-color: var(--color-white);
-  // border-radius: 5px;
-
-  // }
-  // #audioProgress::-webkit-slider-thumb{
-  //   -webkit-appearance: none;
-  //   background-color: var(--color-orange);
-  //   width: 30px;
-  //   height: 15px;
-  //   border-radius: var(--border-radius);
-  //   box-shadow: 0px 0px 4px var(--color-orange);
-  // }
-
 }
 
 #loadingImg{
