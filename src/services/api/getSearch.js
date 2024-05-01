@@ -26,7 +26,6 @@ function getSearchFromJSON(){
 
 
  export async function getSearch(value) {
-    console.log(import.meta.env.VITE_API_KEY); 
     const url = `https://spotify81.p.rapidapi.com/search?q=${value}&type=multi&offset=0&limit=50`;
     const KEY =  import.meta.env.VITE_API_KEY;
     const options = {
